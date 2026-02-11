@@ -7,85 +7,229 @@
 <title>MACH3D | CAD-Design & 3D-Druck</title>
 
 <style>
+:root{
+  --bg: #0b0e14;
+  --panel: #121826;
+  --panel2:#0f1522;
+  --text:#e8ecf3;
+  --muted:#aab3c2;
+  --line:#1f2a40;
+  --accent:#7aa2ff;
+  --accent2:#2bff88;
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --radius: 14px;
+}
+
+*{ box-sizing:border-box; }
+
 body{
   font-family: Arial, sans-serif;
   margin:0;
   padding:0;
-  background:#f4f6f8;
-  color:#222;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(122,162,255,0.18), transparent 60%),
+              radial-gradient(900px 500px at 90% 0%, rgba(43,255,136,0.10), transparent 55%),
+              var(--bg);
+  color: var(--text);
 }
+
 header{
-  background:#111;
-  color:#fff;
-  padding:44px 20px;
+  background: linear-gradient(180deg, rgba(18,24,38,1), rgba(11,14,20,1));
+  border-bottom: 1px solid var(--line);
+  padding: 56px 20px 44px 20px;
   text-align:center;
 }
+
 header h1{
-  margin:0 0 8px 0;
-  letter-spacing:1px;
+  margin:0 0 10px 0;
+  letter-spacing: 2px;
+  font-size: 44px;
 }
+
 header p{
   margin:0;
-  color:#d6d6d6;
+  color: var(--muted);
+  font-size: 18px;
 }
-section{
-  max-width:900px;
-  margin:40px auto;
-  padding:0 20px;
+
+.badge-row{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top: 16px;
 }
-h2{ margin:0 0 12px 0; }
-ul{ padding-left:20px; }
-.card{
-  background:#fff;
-  padding:25px;
-  border-radius:10px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.08);
-  margin-bottom:28px;
-}
+
 .badge{
   display:inline-block;
-  padding:6px 10px;
+  padding:8px 12px;
   border-radius:999px;
-  background:#eef2ff;
-  color:#2b3a67;
-  font-size:13px;
-  margin-top:12px;
+  border: 1px solid var(--line);
+  background: rgba(18,24,38,0.75);
+  color: var(--muted);
+  font-size: 13px;
 }
+
+nav{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 20px 0 20px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color: var(--muted);
+  text-decoration:none;
+  padding:10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(18,24,38,0.55);
+}
+
+nav a:hover{
+  color: var(--text);
+  border-color: rgba(122,162,255,0.45);
+}
+
+section{
+  max-width: 980px;
+  margin: 34px auto;
+  padding: 0 20px;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(18,24,38,1), rgba(15,21,34,1));
+  border: 1px solid var(--line);
+  padding: 26px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 22px;
+}
+
+h2{
+  margin: 0 0 12px 0;
+  font-size: 22px;
+}
+
+ul{
+  padding-left: 18px;
+  margin: 10px 0 0 0;
+}
+
+li{ margin: 6px 0; }
+
+.small{
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+.hr{
+  height:1px;
+  background: var(--line);
+  margin: 18px 0;
+}
+
 .cta{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  margin-top:14px;
+  margin-top: 14px;
 }
+
 .btn{
   display:inline-block;
-  padding:12px 16px;
-  border-radius:10px;
+  padding: 12px 16px;
+  border-radius: 12px;
   text-decoration:none;
-  font-weight:bold;
+  font-weight: bold;
+  border: 1px solid var(--line);
+  background: rgba(18,24,38,0.65);
+  color: var(--text);
 }
+
+.btn:hover{
+  border-color: rgba(122,162,255,0.55);
+}
+
 .btn-primary{
-  background:#111;
-  color:#fff;
+  background: rgba(122,162,255,0.18);
+  border-color: rgba(122,162,255,0.40);
 }
-.btn-secondary{
-  background:#e9ecef;
-  color:#111;
+
+.btn-whatsapp{
+  background: rgba(43,255,136,0.12);
+  border-color: rgba(43,255,136,0.35);
 }
-.small{
-  color:#555;
-  font-size:14px;
-  margin-top:10px;
+
+.kv{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
 }
+
+.kv div{
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(11,14,20,0.35);
+}
+
+.kv strong{
+  display:block;
+  margin-bottom: 4px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+@media (max-width: 860px){
+  .grid{ grid-template-columns: 1fr; }
+  .kv{ grid-template-columns: 1fr; }
+}
+
+.example{
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow:hidden;
+  background: rgba(11,14,20,0.35);
+}
+
+.example img{
+  width:100%;
+  height:180px;
+  object-fit: cover;
+  display:block;
+}
+
+.example .txt{
+  padding: 12px;
+}
+
+.example .txt strong{
+  display:block;
+  margin-bottom: 6px;
+}
+
+a{ color: var(--text); }
+
 footer{
-  background:#111;
-  color:#fff;
+  border-top: 1px solid var(--line);
+  background: rgba(18,24,38,0.55);
   text-align:center;
-  padding:20px;
-  margin-top:40px;
-  font-size:14px;
+  padding: 22px;
+  margin-top: 40px;
+  font-size: 14px;
+  color: var(--muted);
 }
-a{ color:inherit; }
 </style>
 </head>
 
@@ -94,22 +238,50 @@ a{ color:inherit; }
 <header>
   <h1>MACH3D</h1>
   <p>CAD-Design & technischer 3D-Druck für funktionale Bauteile</p>
-  <div class="badge">Region Dietikon (ZH) • Anfrage per E-Mail</div>
+
+  <div class="badge-row">
+    <span class="badge">Region: Dietikon (ZH)</span>
+    <span class="badge">Anfragen: E-Mail oder WhatsApp</span>
+    <span class="badge">Prototypen • Kleinserien • Ersatzteile (nicht sicherheitsrelevant)</span>
+  </div>
 </header>
+
+<nav>
+  <a href="#leistungen">Leistungen</a>
+  <a href="#anwendungen">Anwendungen</a>
+  <a href="#beispiele">Beispiele</a>
+  <a href="#preise">Preise</a>
+  <a href="#ablauf">Ablauf</a>
+  <a href="#kontakt">Kontakt</a>
+  <a href="#impressum">Impressum</a>
+</nav>
 
 <section>
 
-  <div class="card">
+  <div class="card" id="leistungen">
     <h2>Leistungen</h2>
     <ul>
-      <li>CAD-Modell erstellen oder bestehende Teile anpassen</li>
+      <li>CAD-Modell erstellen (Fusion) oder bestehende Teile anpassen</li>
       <li>CAD + 3D-Druck als Komplettlösung</li>
       <li>3D-Druck nach Kundendatei (STL/STEP möglich)</li>
       <li>Prototypen & Kleinserien</li>
     </ul>
+
+    <div class="hr"></div>
+
+    <div class="kv">
+      <div>
+        <strong>Wenn du schon eine Idee hast</strong>
+        Foto/Skizze + grobe Masse (mm) schicken → ich sage dir, ob es druckbar ist.
+      </div>
+      <div>
+        <strong>Wenn du schon eine Datei hast</strong>
+        STL/STEP senden → Offerte basierend auf Material + Druckzeit.
+      </div>
+    </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="anwendungen">
     <h2>Anwendungsbereiche</h2>
     <ul>
       <li>Halterungen, Adapter, Abdeckungen</li>
@@ -117,20 +289,57 @@ a{ color:inherit; }
       <li>Gehäuse, z. B. für Elektronik</li>
       <li>Sonderlösungen für Werkstatt & Garage</li>
     </ul>
-    <p class="small"><strong>Hinweis:</strong> Keine sicherheitskritischen Bauteile (z. B. Bremse/Fahrwerk/tragende Struktur).</p>
+    <p class="small">
+      <strong>Wichtig:</strong> Keine sicherheitskritischen Bauteile (z. B. Bremse/Fahrwerk/tragende Struktur).
+      Der Kunde ist für die sachgemässe Verwendung verantwortlich.
+    </p>
   </div>
 
-  <div class="card">
+  <div class="card" id="beispiele">
+    <h2>Beispiele</h2>
+    <p class="small">Hier kannst du echte Projekte oder Demo-Teile zeigen. (Bilder einfach in dein GitHub-Repo hochladen, z. B. in einen Ordner <strong>images</strong>.)</p>
+
+    <div class="grid">
+      <div class="example">
+        <img src="images/beispiel1.jpg" alt="Beispiel 1 – Halterung/Adapter">
+        <div class="txt">
+          <strong>Halterung / Adapter</strong>
+          Passgenau, funktional – für Werkstatt- oder Fahrzeug-Anwendung.
+        </div>
+      </div>
+
+      <div class="example">
+        <img src="images/beispiel2.jpg" alt="Beispiel 2 – Gehäuse">
+        <div class="txt">
+          <strong>Elektronik-Gehäuse</strong>
+          Saubere Kanten, passende Ausschnitte, optional mit Schraubpunkten.
+        </div>
+      </div>
+
+      <div class="example">
+        <img src="images/beispiel3.jpg" alt="Beispiel 3 – Ersatzteil (nicht sicherheitsrelevant)">
+        <div class="txt">
+          <strong>Ersatzteil (nicht sicherheitsrelevant)</strong>
+          Wenn Originalteile fehlen: Nachbau nach Muster oder Mass.
+        </div>
+      </div>
+    </div>
+
+    <p class="small"><strong>Tipp:</strong> Wenn du noch keine Bilder hast: Druck 2–3 Demo-Teile (Halterung, Gehäuse, Adapter), mach gute Fotos (Tageslicht), und ersetze die Dateien oben.</p>
+  </div>
+
+  <div class="card" id="preise">
     <h2>Preisstruktur</h2>
     <p>CAD: nach Aufwand (Fixpreis oder Stundenansatz möglich)</p>
     <p>3D-Druck: abhängig von Material, Druckzeit, Nachbearbeitung und Komplexität</p>
     <p>Du erhältst vorab eine klare Offerte.</p>
+    <p class="small">Mehrfarbig/Multimaterial kann mehr Zeit und Material brauchen.</p>
   </div>
 
-  <div class="card">
+  <div class="card" id="ablauf">
     <h2>Ablauf</h2>
     <ol>
-      <li>Anfrage per E-Mail (kurz erklären + Foto/Skizze/Datei wenn vorhanden)</li>
+      <li>Anfrage per E-Mail oder WhatsApp (Foto/Skizze/Datei wenn vorhanden)</li>
       <li>Klärung der Anforderungen</li>
       <li>Offerte</li>
       <li>Design & Fertigung</li>
@@ -138,21 +347,84 @@ a{ color:inherit; }
     </ol>
   </div>
 
-  <div class="card">
+  <div class="card" id="kontakt">
     <h2>Kontakt</h2>
-    <p><strong>E-Mail:</strong> <a href="mailto:shop.mach3d@gmail.com?subject=Anfrage%20MACH3D&body=Hallo%20MACH3D%2C%0A%0AIch%20brauche%20...%0A%0AAnwendungsbereich%3A%20...%0AMaterial%20(falls%20bekannt)%3A%20...%0ADeadline%3A%20...%0A%0ADatei/Fotos%3A%20...%0A%0AGruss%0A">shop.mach3d@gmail.com</a></p>
+
+    <p><strong>E-Mail:</strong>
+      <a href="mailto:shop.mach3d@gmail.com?subject=Anfrage%20MACH3D&body=Hallo%20MACH3D%2C%0A%0AIch%20brauche%3A%20...%0AAnwendungsbereich%3A%20...%0AMaterial%20(falls%20bekannt)%3A%20...%0ADeadline%3A%20...%0A%0AFoto/Skizze/Datei%3A%20...%0A%0AGruss%0A">
+        shop.mach3d@gmail.com
+      </a>
+    </p>
+
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/41792386843" target="_blank" rel="noopener">+41 79 238 68 43</a></p>
     <p><strong>Region:</strong> Dietikon (ZH)</p>
+
     <div class="cta">
-      <a class="btn btn-primary" href="mailto:shop.mach3d@gmail.com?subject=Offerte%20anfragen%20(MACH3D)&body=Hallo%20MACH3D%2C%0A%0AIch%20m%C3%B6chte%20eine%20Offerte%20f%C3%BCr%3A%20...%0A%0AFoto/Skizze/Datei%3A%20...%0A%0AGruss%0A">Offerte anfragen</a>
-      <a class="btn btn-secondary" href="#leistungen">Leistungen ansehen</a>
+      <a class="btn btn-primary" href="mailto:shop.mach3d@gmail.com?subject=Offerte%20anfragen%20(MACH3D)&body=Hallo%20MACH3D%2C%0A%0AIch%20m%C3%B6chte%20eine%20Offerte%20f%C3%BCr%3A%20...%0A%0AFoto/Skizze/Datei%3A%20...%0A%0ADeadline%3A%20...%0A%0AGruss%0A">
+        Offerte per E-Mail
+      </a>
+
+      <a class="btn btn-whatsapp" href="https://wa.me/41792386843?text=Hallo%20MACH3D%2C%20ich%20m%C3%B6chte%20eine%20Offerte.%20Ich%20brauche%3A%20...%20(Foto/Datei%20kann%20ich%20nachschicken)" target="_blank" rel="noopener">
+        Offerte per WhatsApp
+      </a>
     </div>
-    <p class="small">Tipp: Schick wenn möglich ein Foto + grobe Masse (mm) oder eine vorhandene Datei.</p>
+
+    <p class="small">
+      Wenn du ein Foto + grobe Masse (mm) schickst, kann ich schneller einschätzen, ob es CAD/3D-druckbar ist.
+    </p>
+  </div>
+
+  <div class="card" id="impressum">
+    <h2>Impressum</h2>
+
+    <p class="small">
+      <strong>Hinweis:</strong> Bitte ersetze die Platzhalter unten mit deinen echten Angaben.
+      (Ich kann deinen Namen/Adresse nicht kennen und werde sie nicht erfinden.)
+    </p>
+
+    <div class="kv">
+      <div>
+        <strong>Betreiber</strong>
+        <span>
+          MACH3D<br>
+          [Vollständiger Name]<br>
+          [Strasse + Nr.]<br>
+          [PLZ Ort], Schweiz
+        </span>
+      </div>
+
+      <div>
+        <strong>Kontakt</strong>
+        <span>
+          E-Mail: shop.mach3d@gmail.com<br>
+          WhatsApp: +41 79 238 68 43
+        </span>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <p class="small">
+      <strong>Haftung / Einsatzbereich:</strong><br>
+      Es werden keine sicherheitskritischen Bauteile für Strassenfahrzeuge gefertigt (z. B. Bremse, Fahrwerk, tragende Struktur).
+      Der Kunde ist für Auswahl, Einsatz und sachgemässe Verwendung verantwortlich.
+    </p>
+
+    <p class="small">
+      <strong>Urheberrechte:</strong><br>
+      Inhalte und Bilder dieser Website sind urheberrechtlich geschützt, soweit nicht anders angegeben.
+    </p>
+
+    <p class="small">
+      <strong>Datenschutz (minimal):</strong><br>
+      Diese Website speichert keine Formulardaten. Bei Kontaktaufnahme per E-Mail/WhatsApp werden die von dir gesendeten Daten zur Bearbeitung der Anfrage verwendet.
+    </p>
   </div>
 
 </section>
 
 <footer>
-  © 2026 MACH3D – CAD-Design & 3D-Druck • Dietikon (ZH)
+  © 2026 MACH3D • CAD-Design & 3D-Druck • Dietikon (ZH)
 </footer>
 
 </body>
