@@ -7,13 +7,13 @@
 
 <style>
 :root{
-  --bg:#000000;
-  --card:#ffffff;
-  --text:#111111;
-  --muted:#555555;
-  --line:#e5e5e5;
-  --accent:#1d4ed8;
-  --radius:18px;
+  --bg:#161b22;
+  --card:#1f2633;
+  --text:#f1f5f9;
+  --muted:#9aa4b2;
+  --line:#2f394d;
+  --accent:#4f7cff;
+  --radius:16px;
 }
 
 *{box-sizing:border-box;}
@@ -26,96 +26,85 @@ body{
   line-height:1.6;
 }
 
-/* HEADER */
-
 header{
   text-align:center;
-  padding:90px 20px 70px 20px;
-  color:white;
+  padding:80px 20px 60px 20px;
+  border-bottom:1px solid var(--line);
 }
 
 header h1{
   margin:0;
-  font-size:52px;
-  letter-spacing:3px;
+  font-size:48px;
+  letter-spacing:2px;
 }
 
 header p{
-  margin-top:18px;
-  color:#cccccc;
+  margin-top:14px;
+  color:var(--muted);
   font-size:18px;
 }
-
-/* NAVIGATION */
 
 nav{
   text-align:center;
   padding:18px 0;
-  border-top:1px solid #222;
-  border-bottom:1px solid #222;
-  background:#000;
+  border-bottom:1px solid var(--line);
 }
 
 nav a{
-  color:#bbbbbb;
+  color:var(--muted);
   text-decoration:none;
-  margin:0 18px;
+  margin:0 15px;
   font-size:14px;
 }
 
 nav a:hover{
-  color:white;
+  color:var(--text);
 }
-
-/* SECTION */
 
 section{
   max-width:1100px;
-  margin:80px auto;
+  margin:70px auto;
   padding:0 20px;
 }
 
-/* CARDS */
-
 .card{
   background:var(--card);
+  border:1px solid var(--line);
   border-radius:var(--radius);
-  padding:40px;
-  margin-bottom:60px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.35);
+  padding:35px;
+  margin-bottom:50px;
 }
 
 h2{
   margin-top:0;
   margin-bottom:25px;
-  font-size:28px;
+  font-size:26px;
 }
 
-/* GALLERY */
+/* Gallery */
 
 .gallery{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
-  gap:30px;
+  gap:25px;
 }
 
 .gallery-item{
+  background:#1a212d;
+  border:1px solid var(--line);
   border-radius:14px;
   overflow:hidden;
-  background:white;
-  transition:transform 0.2s ease, box-shadow 0.2s ease;
+  transition:transform 0.2s ease;
 }
 
 .gallery-item:hover{
   transform:translateY(-6px);
-  box-shadow:0 15px 35px rgba(0,0,0,0.2);
 }
 
 .gallery-item img{
   width:100%;
-  height:260px;
+  height:240px;
   object-fit:cover;
-  display:block;
 }
 
 .gallery-caption{
@@ -130,49 +119,46 @@ h2{
   margin-bottom:8px;
 }
 
-/* BUTTONS */
+/* Buttons */
 
 .cta{
   margin-top:25px;
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
 }
 
 .btn{
   display:inline-block;
   padding:14px 22px;
-  border-radius:12px;
+  border-radius:10px;
   text-decoration:none;
   font-weight:bold;
-  background:#111;
-  color:white;
+  margin-right:12px;
+  border:1px solid var(--line);
+  background:transparent;
+  color:var(--text);
 }
 
 .btn-primary{
   background:var(--accent);
+  border-color:var(--accent);
 }
 
 .btn-whatsapp{
-  background:#25D366;
+  border-color:#25D366;
 }
 
 .small{
   font-size:14px;
-  color:#777;
-  margin-top:15px;
+  color:var(--muted);
+  margin-top:14px;
 }
-
-/* FOOTER */
 
 footer{
   text-align:center;
   padding:40px;
-  color:#888;
-  border-top:1px solid #222;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:14px;
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 900px){
   .gallery{
@@ -190,16 +176,15 @@ footer{
 </header>
 
 <nav>
-  <a href="#leistungen">Leistung</a>
+  <a href="#leistungen">Leistungen</a>
   <a href="#beispiele">Beispiele</a>
   <a href="#kontakt">Kontakt</a>
-  <a href="#impressum">Impressum</a>
 </nav>
 
 <section>
 
 <div class="card" id="leistungen">
-  <h2>Leistung</h2>
+  <h2>Leistungen</h2>
   <p>
     3D-Druck nach Kundendatei oder vollständige Konstruktion in CAD.
     Prototypen, Einzelteile und Kleinserien für technische Anwendungen.
@@ -210,6 +195,7 @@ footer{
   <h2>Beispiele</h2>
 
   <div class="gallery">
+
     <div class="gallery-item">
       <img src="images/teil1.jpg" alt="Beispiel 1">
       <div class="gallery-caption">
@@ -229,10 +215,11 @@ footer{
     <div class="gallery-item">
       <img src="images/teil3.jpg" alt="Beispiel 3">
       <div class="gallery-caption">
-        <strong>Ersatzteil</strong>
+        <strong>Ersatzteil (nicht sicherheitsrelevant)</strong>
         Nach Muster oder technischer Zeichnung gefertigt.
       </div>
     </div>
+
   </div>
 </div>
 
@@ -252,7 +239,7 @@ footer{
   </p>
 </div>
 
-<div class="card" id="impressum">
+<div class="card">
   <h2>Impressum</h2>
   MACH3D<br>
   [Vollständiger Name]<br>
