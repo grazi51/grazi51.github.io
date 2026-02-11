@@ -7,11 +7,11 @@
 
 <style>
 :root{
-  --bg:#141820;
-  --card:#1c2230;
+  --bg:#161b22;
+  --card:#1f2633;
   --text:#f1f5f9;
   --muted:#9aa4b2;
-  --line:#2a3142;
+  --line:#2f394d;
   --accent:#4f7cff;
   --radius:16px;
 }
@@ -62,7 +62,7 @@ nav a:hover{
 }
 
 section{
-  max-width:950px;
+  max-width:1000px;
   margin:60px auto;
   padding:0 20px;
 }
@@ -72,13 +72,13 @@ section{
   border:1px solid var(--line);
   border-radius:var(--radius);
   padding:30px;
-  margin-bottom:30px;
+  margin-bottom:40px;
 }
 
 h2{
   margin-top:0;
-  margin-bottom:15px;
-  font-size:22px;
+  margin-bottom:20px;
+  font-size:24px;
 }
 
 ul{
@@ -88,6 +88,47 @@ ul{
 li{
   margin-bottom:8px;
 }
+
+/* Gallery */
+
+.gallery{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:20px;
+}
+
+.gallery-item{
+  background:#1a212d;
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  transition:transform 0.2s ease;
+}
+
+.gallery-item:hover{
+  transform:translateY(-4px);
+}
+
+.gallery-item img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+
+.gallery-caption{
+  padding:15px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.gallery-caption strong{
+  display:block;
+  color:var(--text);
+  margin-bottom:6px;
+}
+
+/* Buttons */
 
 .cta{
   margin-top:20px;
@@ -127,6 +168,14 @@ footer{
   color:var(--muted);
   font-size:14px;
 }
+
+/* Responsive */
+
+@media (max-width: 900px){
+  .gallery{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 
@@ -139,11 +188,8 @@ footer{
 
 <nav>
   <a href="#leistungen">Leistungen</a>
-  <a href="#anwendungen">Anwendungen</a>
-  <a href="#preise">Preise</a>
-  <a href="#ablauf">Ablauf</a>
+  <a href="#beispiele">Beispiele</a>
   <a href="#kontakt">Kontakt</a>
-  <a href="#impressum">Impressum</a>
 </nav>
 
 <section>
@@ -151,50 +197,43 @@ footer{
 <div class="card" id="leistungen">
   <h2>Leistungen</h2>
   <ul>
-    <li>3D-Druck nach Kundendatei (STL/STEP)</li>
-    <li>CAD-Modell erstellen oder bestehende Teile anpassen</li>
+    <li>3D-Druck nach Kundendatei (STL / STEP)</li>
+    <li>CAD-Modellierung mit Fusion</li>
     <li>Prototypen & Kleinserien</li>
     <li>Technische Sonderlösungen</li>
   </ul>
 </div>
 
-<div class="card" id="anwendungen">
-  <h2>Anwendungsbereiche</h2>
-  <ul>
-    <li>Halterungen, Adapter, Abdeckungen</li>
-    <li>Ersatzteile (nicht sicherheitsrelevant)</li>
-    <li>Gehäuse für Elektronik</li>
-    <li>Lösungen für Werkstatt & Garage</li>
-  </ul>
-  <p class="small">
-    Keine sicherheitskritischen Bauteile (z. B. Bremse, Fahrwerk, tragende Struktur).
-  </p>
-  <div class="card" id="beispiele">
+<div class="card" id="beispiele">
   <h2>Beispiele</h2>
 
-  <img src="images/teil1.jpg" style="width:100%; border-radius:10px; margin-bottom:15px;">
-  <img src="images/teil2.jpg" style="width:100%; border-radius:10px; margin-bottom:15px;">
-  <img src="images/teil3.jpg" style="width:100%; border-radius:10px;">
-</div>
+  <div class="gallery">
 
-</div>
+    <div class="gallery-item">
+      <img src="images/teil1.jpg" alt="Halterung">
+      <div class="gallery-caption">
+        <strong>Halterung / Adapter</strong>
+        Funktionales Bauteil für Werkstatt oder Fahrzeug.
+      </div>
+    </div>
 
-<div class="card" id="preise">
-  <h2>Preisstruktur</h2>
-  <p>CAD: nach Aufwand</p>
-  <p>3D-Druck: abhängig von Material, Druckzeit und Komplexität</p>
-  <p>Vorab klare Offerte.</p>
-</div>
+    <div class="gallery-item">
+      <img src="images/teil2.jpg" alt="Gehäuse">
+      <div class="gallery-caption">
+        <strong>Elektronik-Gehäuse</strong>
+        Präzise gefertigt nach Mass.
+      </div>
+    </div>
 
-<div class="card" id="ablauf">
-  <h2>Ablauf</h2>
-  <ol>
-    <li>Anfrage per E-Mail oder WhatsApp</li>
-    <li>Klärung der Anforderungen</li>
-    <li>Offerte</li>
-    <li>Design & Fertigung</li>
-    <li>Abholung oder Versand</li>
-  </ol>
+    <div class="gallery-item">
+      <img src="images/teil3.jpg" alt="Ersatzteil">
+      <div class="gallery-caption">
+        <strong>Ersatzteil (nicht sicherheitsrelevant)</strong>
+        Nach Muster oder technischer Zeichnung.
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <div class="card" id="kontakt">
@@ -214,18 +253,16 @@ footer{
   </div>
 
   <p class="small">
-    Foto + grobe Masse (mm) beschleunigen die Offerte.
+    Für eine schnelle Offerte: Foto + grobe Masse (mm) mitsenden.
   </p>
 </div>
 
-<div class="card" id="impressum">
+<div class="card">
   <h2>Impressum</h2>
-  <p>
-    MACH3D<br>
-    [Vollständiger Name]<br>
-    [Strasse + Nr.]<br>
-    [PLZ Ort], Schweiz
-  </p>
+  MACH3D<br>
+  [Vollständiger Name]<br>
+  [Strasse + Nr.]<br>
+  [PLZ Ort], Schweiz
 </div>
 
 </section>
