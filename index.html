@@ -17,7 +17,6 @@
   --accent2:#7aa2ff;
   --ok:#22c55e;
   --warn:#f59e0b;
-  --danger:#ef4444;
   --radius:16px;
   --shadow: 0 16px 40px rgba(0,0,0,.25);
 }
@@ -232,15 +231,8 @@ hr.sep{
   border-radius:14px;
   padding:16px;
 }
-.stat .num{
-  font-size:20px;
-  font-weight:bold;
-}
-.stat .lab{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:4px;
-}
+.stat .num{font-size:20px;font-weight:bold;}
+.stat .lab{color:var(--muted);font-size:12px;margin-top:4px;}
 @media(max-width:900px){
   .stats{grid-template-columns:1fr;}
 }
@@ -703,22 +695,21 @@ footer{
     </div>
 
     <div class="oknote" style="margin-top:16px;">
-      <strong style="color:var(--ok);">Tipp:</strong> Wenn du mir Anwendung + Temperatur + Belastung sagst, kann ich dir Material und Wandstärken sinnvoll vorschlagen.
+      <strong style="color:var(--ok);">Tipp:</strong> Wenn du mir Anwendung + Temperatur + Belastung sagst, kann ich Material und Wandstärken sinnvoll vorschlagen.
     </div>
   </div>
 
   <div class="card" id="preise">
     <h2>Preise</h2>
     <p>
-      Ich kann deine realen Preise nicht bestätigen. Darum ist das hier eine <strong>saubere Struktur als Vorlage</strong>.
-      Ersetze „Preis auf Anfrage“ durch deine echten CHF-Werte (oder lass es so).
+      Preisstruktur als Vorlage. Ersetze „Preis auf Anfrage“ durch deine echten CHF-Werte (oder lass es so).
     </p>
 
     <div class="pricing" role="list">
       <div class="price-card" role="listitem">
         <div class="name">3D-Druck nach Datei</div>
         <div class="price">Preis auf Anfrage</div>
-        <div class="hint">Vorlage: Material + Druckzeit + Nacharbeit</div>
+        <div class="hint">Material + Druckzeit + Nacharbeit</div>
         <ul class="ul">
           <li>Machbarkeitscheck & Orientierung</li>
           <li>Standard-Nacharbeit</li>
@@ -730,7 +721,7 @@ footer{
         <div class="label">Beliebt</div>
         <div class="name">CAD + 3D-Druck</div>
         <div class="price">Preis auf Anfrage</div>
-        <div class="hint">Vorlage: CAD-Aufwand + Druck</div>
+        <div class="hint">CAD-Aufwand + Druck</div>
         <ul class="ul">
           <li>CAD nach Skizze/Masse</li>
           <li>1–2 Iterationen (anpassbar)</li>
@@ -741,7 +732,7 @@ footer{
       <div class="price-card" role="listitem">
         <div class="name">Kleinserie</div>
         <div class="price">Preis auf Anfrage</div>
-        <div class="hint">Vorlage: Staffelpreis je Stück</div>
+        <div class="hint">Staffelpreis je Stück</div>
         <ul class="ul">
           <li>Reproduzierbare Einstellungen</li>
           <li>Stückzahl-Discount möglich</li>
@@ -837,7 +828,7 @@ footer{
   <div class="card" id="offerte">
     <h2>Schnell-Offerte (interaktiv)</h2>
     <p>
-      Formular öffnet eine E-Mail mit allen Angaben. Es berechnet keinen echten Preis, aber sammelt sauber die Infos.
+      Formular öffnet eine E-Mail mit allen Angaben. Für WhatsApp wird der Text automatisch vorbereitet und direkt geöffnet.
     </p>
 
     <form id="quoteForm">
@@ -885,7 +876,7 @@ footer{
         </div>
         <div class="field">
           <label for="temp">Temperatur (optional)</label>
-          <input id="temp" name="temp" type="text" placeholder="z. B. bis 50°C / Motorraum / Indoor" />
+          <input id="temp" name="temp" type="text" placeholder="z. B. bis 50°C / Indoor/Outdoor" />
         </div>
       </div>
 
@@ -901,14 +892,12 @@ footer{
 
       <div class="cta">
         <button class="btn btn-primary" type="submit">E-Mail mit Anfrage öffnen</button>
-        <a class="btn btn-whatsapp" id="waLink" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp öffnen</a>
-        <button class="btn" type="button" id="copyBtn">Text kopieren</button>
+        <a class="btn btn-whatsapp" id="waLink" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp mit Text öffnen</a>
       </div>
 
-      <div class="note" id="copyBox">
-        <strong>Copy-Text:</strong>
-        <div style="margin-top:8px; white-space:pre-wrap;" id="copyText">—</div>
-      </div>
+      <p class="small">
+        Tipp: Wenn du Dateien hast (STL/STEP, Fotos), schick sie direkt im WhatsApp/E-Mail hinterher.
+      </p>
     </form>
   </div>
 
@@ -922,10 +911,6 @@ footer{
       <details>
         <summary>Was ist mit Passungen/Toleranzen?</summary>
         <p>Für kritische Passungen lohnt sich ein Prototyp. Dann wird final angepasst.</p>
-      </details>
-      <details>
-        <summary>Machst du auch Metall- oder Resin-Druck?</summary>
-        <p>Wenn du das anbietest: hier ergänzen. Sonst entfernen oder „auf Anfrage“ schreiben.</p>
       </details>
       <details>
         <summary>Wie läuft Zahlung/Abholung?</summary>
@@ -1040,10 +1025,8 @@ modalClose.addEventListener("click", closeModal);
 modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
 document.addEventListener("keydown", (e) => { if(e.key === "Escape" && modal.classList.contains("open")) closeModal(); });
 
-/* Quote form -> mailto + WhatsApp copy text */
+/* Quote form -> mailto + WhatsApp (mit Text) */
 const quoteForm = document.getElementById("quoteForm");
-const copyText = document.getElementById("copyText");
-const copyBtn = document.getElementById("copyBtn");
 const waLink = document.getElementById("waLink");
 
 function buildQuoteText(){
@@ -1072,28 +1055,16 @@ function buildQuoteText(){
   ].join("\n");
 }
 
-function refreshCopy(){
+function refreshWhatsApp(){
   const text = buildQuoteText();
-  copyText.textContent = text;
   waLink.href = "https://wa.me/41792386843?text=" + encodeURIComponent(text);
 }
 
 ["service","urgency","materialSel","qty","dims","temp","usecase","msg"].forEach(id => {
-  document.getElementById(id).addEventListener("input", refreshCopy);
-  document.getElementById(id).addEventListener("change", refreshCopy);
+  document.getElementById(id).addEventListener("input", refreshWhatsApp);
+  document.getElementById(id).addEventListener("change", refreshWhatsApp);
 });
-refreshCopy();
-
-copyBtn.addEventListener("click", async () => {
-  try{
-    await navigator.clipboard.writeText(copyText.textContent);
-    copyBtn.textContent = "Kopiert ✅";
-    setTimeout(()=> copyBtn.textContent="Text kopieren", 1400);
-  }catch(err){
-    copyBtn.textContent = "Kopieren nicht möglich";
-    setTimeout(()=> copyBtn.textContent="Text kopieren", 1600);
-  }
-});
+refreshWhatsApp();
 
 quoteForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -1105,8 +1076,9 @@ quoteForm.addEventListener("submit", (e) => {
 
 /* Status pill (Vorlage) */
 const statusPill = document.getElementById("statusPill");
-const hours = new Date().getHours();
-const day = new Date().getDay(); // 0 So, 6 Sa
+const now = new Date();
+const hours = now.getHours();
+const day = now.getDay(); // 0 So, 6 Sa
 if(day === 0 || day === 6){
   statusPill.textContent = "Antwort: nächster Werktag*";
 }else if(hours >= 18 || hours < 8){
