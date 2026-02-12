@@ -1,169 +1,488 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MACH3D | Technischer 3D-Druck</title>
 
 <style>
 :root{
   --bg:#161b22;
   --card:#1f2633;
+  --card2:#1a212d;
   --text:#f1f5f9;
   --muted:#9aa4b2;
   --line:#2f394d;
   --accent:#4f7cff;
+  --accent2:#7aa2ff;
+  --ok:#22c55e;
+  --warn:#f59e0b;
   --radius:16px;
+  --shadow: 0 16px 40px rgba(0,0,0,.25);
 }
 
 *{box-sizing:border-box;}
-
+html{scroll-behavior:smooth;}
 body{
   margin:0;
   font-family:Arial, sans-serif;
-  background:var(--bg);
+  background:radial-gradient(1200px 700px at 20% -10%, rgba(79,124,255,.18), transparent 55%),
+             radial-gradient(1000px 600px at 100% 0%, rgba(122,162,255,.12), transparent 55%),
+             var(--bg);
   color:var(--text);
   line-height:1.6;
 }
 
+a{color:inherit}
+
 header{
   text-align:center;
-  padding:80px 20px 60px 20px;
+  padding:86px 20px 54px;
   border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
 }
-
+header:before{
+  content:"";
+  position:absolute;
+  inset:-120px -120px auto -120px;
+  height:240px;
+  background:linear-gradient(90deg, transparent, rgba(79,124,255,.25), transparent);
+  transform:rotate(-8deg);
+  filter:blur(6px);
+  opacity:.7;
+}
 header h1{
+  position:relative;
   margin:0;
-  font-size:48px;
+  font-size:52px;
   letter-spacing:2px;
 }
-
 header p{
-  margin-top:14px;
+  position:relative;
+  margin:14px auto 0;
   color:var(--muted);
   font-size:18px;
+  max-width:920px;
+}
+.badges{
+  margin-top:22px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.badge{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.14);
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:13px;
+  color:var(--muted);
 }
 
 nav{
-  text-align:center;
-  padding:18px 0;
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter: blur(10px);
+  background:rgba(22,27,34,.76);
   border-bottom:1px solid var(--line);
 }
-
+.nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.nav-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
 nav a{
   color:var(--muted);
   text-decoration:none;
-  margin:0 15px;
-  font-size:14px;
+  font-size:13px;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid transparent;
 }
-
 nav a:hover{
   color:var(--text);
+  border-color:rgba(79,124,255,.25);
+  background:rgba(79,124,255,.08);
+}
+nav a.active{
+  color:var(--text);
+  border-color:rgba(79,124,255,.45);
+  background:rgba(79,124,255,.12);
+}
+.nav-cta{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.pill{
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.14);
+  border-radius:999px;
+  padding:8px 10px;
 }
 
 section{
   max-width:1100px;
-  margin:70px auto;
+  margin:60px auto;
   padding:0 20px;
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  padding:35px;
-  margin-bottom:50px;
+.grid{
+  display:grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap:22px;
+}
+@media (max-width: 980px){
+  .grid{grid-template-columns:1fr;}
 }
 
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 55%), var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:34px;
+  box-shadow: var(--shadow);
+}
+.card + .card{margin-top:22px;}
+
 h2{
-  margin-top:0;
-  margin-bottom:25px;
+  margin:0 0 18px 0;
   font-size:26px;
+}
+h3{
+  margin:18px 0 10px;
+  font-size:18px;
+}
+p{margin:10px 0;}
+
+.kv{
+  display:grid;
+  grid-template-columns: 160px 1fr;
+  gap:8px 16px;
+  margin-top:14px;
+}
+.kv div{padding:8px 0;border-bottom:1px solid rgba(47,57,77,.55);}
+.kv .k{color:var(--muted)}
+.kv .v{color:var(--text)}
+@media(max-width:640px){
+  .kv{grid-template-columns:1fr;}
+  .kv div{border-bottom:none}
+  .kv .k{padding-bottom:0}
+  .kv .v{padding-top:0;border-bottom:1px solid rgba(47,57,77,.55);}
+}
+
+hr.sep{
+  border:0;
+  border-top:1px solid rgba(47,57,77,.65);
+  margin:18px 0;
+}
+
+/* Mini cards */
+.mini-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+  margin-top:16px;
+}
+.mini{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
+}
+.mini .t{font-weight:bold}
+.mini .d{color:var(--muted); font-size:13px; margin-top:6px;}
+@media (max-width: 900px){
+  .mini-grid{grid-template-columns:1fr;}
 }
 
 /* Gallery */
-
 .gallery{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
-  gap:25px;
+  gap:18px;
 }
-
 .gallery-item{
-  background:#1a212d;
+  background:var(--card2);
   border:1px solid var(--line);
   border-radius:14px;
   overflow:hidden;
-  transition:transform 0.2s ease;
+  cursor:pointer;
+  transition:transform 0.18s ease, border-color .18s ease, box-shadow .18s ease;
 }
-
 .gallery-item:hover{
   transform:translateY(-6px);
+  border-color:rgba(79,124,255,.45);
+  box-shadow:0 14px 35px rgba(0,0,0,.22);
 }
-
 .gallery-item img{
   width:100%;
-  height:240px;
+  height:220px;
   object-fit:cover;
+  display:block;
 }
-
 .gallery-caption{
-  padding:18px;
-  font-size:14px;
+  padding:16px;
+  font-size:13px;
   color:var(--muted);
 }
-
 .gallery-caption strong{
   display:block;
   color:var(--text);
   margin-bottom:8px;
 }
+@media (max-width: 900px){
+  .gallery{grid-template-columns:1fr;}
+  .gallery-item img{height:240px;}
+}
 
 /* Buttons */
-
 .cta{
-  margin-top:25px;
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
 }
-
 .btn{
-  display:inline-block;
-  padding:14px 22px;
-  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:13px 18px;
+  border-radius:12px;
   text-decoration:none;
   font-weight:bold;
-  margin-right:12px;
   border:1px solid var(--line);
-  background:transparent;
+  background:rgba(0,0,0,.12);
   color:var(--text);
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
 }
+.btn:hover{transform: translateY(-1px); border-color:rgba(79,124,255,.35);}
+.btn:active{transform: translateY(0px);}
 
 .btn-primary{
-  background:var(--accent);
+  background:linear-gradient(180deg, rgba(255,255,255,.10), transparent 55%), var(--accent);
   border-color:var(--accent);
 }
+.btn-primary:hover{border-color:var(--accent2);}
 
 .btn-whatsapp{
   border-color:#25D366;
 }
-
 .small{
-  font-size:14px;
+  font-size:13px;
   color:var(--muted);
+  margin-top:12px;
+}
+
+/* Pricing */
+.pricing{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
   margin-top:14px;
 }
+.price-card{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+}
+.price-card.popular{
+  border-color:rgba(79,124,255,.55);
+}
+.price-card .label{
+  position:absolute;
+  top:12px;
+  right:12px;
+  font-size:12px;
+  color:var(--text);
+  background:rgba(79,124,255,.22);
+  border:1px solid rgba(79,124,255,.35);
+  padding:6px 10px;
+  border-radius:999px;
+}
+.price-card .name{font-weight:bold;font-size:16px;margin-bottom:6px;}
+.price-card .price{
+  font-size:22px;
+  font-weight:bold;
+  margin:10px 0 6px;
+}
+.price-card .hint{font-size:12px;color:var(--muted);}
+.ul{
+  margin:12px 0 0;
+  padding-left:18px;
+  color:var(--muted);
+  font-size:13px;
+}
+.ul li{margin:6px 0;}
+
+@media(max-width: 980px){
+  .pricing{grid-template-columns:1fr;}
+}
+
+/* Form */
+form{
+  margin-top:14px;
+  display:grid;
+  gap:12px;
+}
+.field{
+  display:grid;
+  gap:6px;
+}
+label{
+  font-size:13px;
+  color:var(--muted);
+}
+input, select, textarea{
+  width:100%;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  color:var(--text);
+  outline:none;
+}
+textarea{min-height:110px; resize:vertical;}
+input:focus, select:focus, textarea:focus{
+  border-color:rgba(79,124,255,.55);
+  box-shadow:0 0 0 3px rgba(79,124,255,.12);
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+@media(max-width: 700px){
+  .form-grid{grid-template-columns:1fr;}
+}
+
+.note{
+  border:1px solid rgba(245,158,11,.35);
+  background:rgba(245,158,11,.08);
+  color:var(--text);
+  border-radius:14px;
+  padding:14px;
+  font-size:13px;
+}
+.note strong{color:var(--warn)}
+
+/* FAQ */
+.faq{
+  margin-top:10px;
+  display:grid;
+  gap:10px;
+}
+details{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px 14px;
+}
+summary{
+  cursor:pointer;
+  font-weight:bold;
+}
+details p{color:var(--muted); font-size:13px; margin:10px 0 0;}
+
+/* Modal */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:100;
+}
+.modal.open{display:flex;}
+.modal-content{
+  width:min(980px, 100%);
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.modal-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 14px;
+  border-bottom:1px solid var(--line);
+}
+.modal-top .title{
+  font-weight:bold;
+  color:var(--text);
+  font-size:14px;
+}
+.modal-top button{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+  color:var(--text);
+  border-radius:10px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+.modal-img{
+  width:100%;
+  height:min(70vh, 560px);
+  object-fit:contain;
+  background:#0f141b;
+  display:block;
+}
+.modal-caption{
+  padding:14px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* Back to top */
+#toTop{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.28);
+  backdrop-filter: blur(8px);
+  color:var(--text);
+  border-radius:999px;
+  padding:12px 14px;
+  cursor:pointer;
+  display:none;
+}
+#toTop.show{display:block;}
 
 footer{
   text-align:center;
-  padding:40px;
+  padding:40px 18px;
   border-top:1px solid var(--line);
   color:var(--muted);
   font-size:14px;
 }
 
-@media (max-width: 900px){
-  .gallery{
-    grid-template-columns:1fr;
-  }
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{scroll-behavior:auto;}
+  .gallery-item, .btn{transition:none;}
 }
 </style>
 </head>
@@ -172,86 +491,502 @@ footer{
 
 <header>
   <h1>MACH3D</h1>
-  <p>Technischer 3D-Druck & CAD für funktionale Bauteile</p>
+  <p>Technischer 3D-Druck & CAD für funktionale Bauteile – Prototypen, Einzelteile und Kleinserien.</p>
+
+  <div class="badges" aria-label="Highlights">
+    <div class="badge">CAD-Konstruktion</div>
+    <div class="badge">3D-Druck nach Datei</div>
+    <div class="badge">Kleinserien</div>
+    <div class="badge">Saubere Offerte</div>
+    <div class="badge">Schweiz (ZH)</div>
+  </div>
 </header>
 
 <nav>
-  <a href="#leistungen">Leistungen</a>
-  <a href="#beispiele">Beispiele</a>
-  <a href="#kontakt">Kontakt</a>
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#anwendungen">Anwendungen</a>
+      <a href="#preise">Preise</a>
+      <a href="#prozess">Ablauf</a>
+      <a href="#beispiele">Beispiele</a>
+      <a href="#offerte">Offerte</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <div class="nav-cta">
+      <span class="pill" id="statusPill">Antwort: i.d.R. &lt; 24h*</span>
+      <a class="btn btn-primary" href="#offerte">Schnell-Offerte</a>
+    </div>
+  </div>
 </nav>
 
 <section>
 
-<div class="card" id="leistungen">
-  <h2>Leistungen</h2>
-  <p>
-    3D-Druck nach Kundendatei oder vollständige Konstruktion in CAD.
-    Prototypen, Einzelteile und Kleinserien für technische Anwendungen.
-  </p>
-</div>
+  <div class="grid">
+    <div class="card" id="leistungen">
+      <h2>Leistungen</h2>
+      <p>
+        Ich fertige funktionale 3D-Druckteile für technische Anwendungen – nach Kundendatei (z.&nbsp;B. STL/STEP)
+        oder inklusive kompletter CAD-Konstruktion.
+      </p>
 
-<div class="card" id="beispiele">
-  <h2>Beispiele</h2>
-
-  <div class="gallery">
-
-    <div class="gallery-item">
-      <img src="images/teil1.jpg" alt="Beispiel 1">
-      <div class="gallery-caption">
-        <strong>Halterung / Adapter</strong>
-        Funktionales Bauteil für präzise technische Anwendungen.
+      <div class="mini-grid" role="list">
+        <div class="mini" role="listitem">
+          <div class="t">3D-Druck nach Datei</div>
+          <div class="d">Schnell, präzise, inkl. Prüfung der Druckbarkeit.</div>
+        </div>
+        <div class="mini" role="listitem">
+          <div class="t">CAD / Konstruktion</div>
+          <div class="d">Nach Skizze, Foto + Masse oder Zeichnung.</div>
+        </div>
+        <div class="mini" role="listitem">
+          <div class="t">Kleinserien</div>
+          <div class="d">Wiederholteile, Ersatzteile (nicht sicherheitsrelevant).</div>
+        </div>
       </div>
+
+      <hr class="sep" />
+
+      <h3>Was du bekommst</h3>
+      <div class="kv">
+        <div class="k">Offerte</div><div class="v">Transparent (Material, Druckzeit, Nacharbeit, Versand/Abholung)</div>
+        <div class="k">Optionen</div><div class="v">Material-/Infill-Varianten, Passungen, Gewinde-/Einpressmuttern (falls gewünscht)</div>
+        <div class="k">Qualität</div><div class="v">Saubere Kanten, sinnvolle Ausrichtung, robuste Konstruktion</div>
+      </div>
+
+      <p class="small">
+        * Text ist eine Vorlage. Du kannst ihn anpassen oder entfernen.
+      </p>
     </div>
 
-    <div class="gallery-item">
-      <img src="images/teil2.jpg" alt="Beispiel 2">
-      <div class="gallery-caption">
-        <strong>Elektronik-Gehäuse</strong>
-        Individuell konstruiert und massgenau gefertigt.
+    <div class="card">
+      <h2>Quick Facts</h2>
+      <div class="kv">
+        <div class="k">Standort</div><div class="v">Dietikon (ZH)</div>
+        <div class="k">Kontakt</div><div class="v">E-Mail & WhatsApp</div>
+        <div class="k">Dateien</div><div class="v">STL / STEP / IGES (je nach Projekt)</div>
+        <div class="k">Lieferung</div><div class="v">Versand oder Abholung (nach Absprache)</div>
+      </div>
+
+      <div class="note" style="margin-top:16px;">
+        <strong>Hinweis (Sicherheit):</strong> Ich fertige keine sicherheitskritischen Teile (z.&nbsp;B. Bremse, Lenkung, tragende Lastteile)
+        ohne klare Spezifikation und Freigabe durch dich. Teile sind grundsätzlich <em>auf eigene Verantwortung</em> einzusetzen.
       </div>
     </div>
-
-    <div class="gallery-item">
-      <img src="images/teil3.jpg" alt="Beispiel 3">
-      <div class="gallery-caption">
-        <strong>Ersatzteil (nicht sicherheitsrelevant)</strong>
-        Nach Muster oder technischer Zeichnung gefertigt.
-      </div>
-    </div>
-
   </div>
-</div>
 
-<div class="card" id="kontakt">
-  <h2>Kontakt</h2>
+  <div class="card" id="anwendungen">
+    <h2>Anwendungen</h2>
+    <p>Typische Einsätze, bei denen 3D-Druck besonders Sinn macht:</p>
 
-  <p><strong>E-Mail:</strong> shop.mach3d@gmail.com</p>
-  <p><strong>WhatsApp:</strong> +41 79 238 68 43</p>
+    <div class="mini-grid" role="list">
+      <div class="mini" role="listitem">
+        <div class="t">Halterungen & Adapter</div>
+        <div class="d">Passgenaue Montage, Kabel-/Sensorhalter, Distanzstücke.</div>
+      </div>
+      <div class="mini" role="listitem">
+        <div class="t">Gehäuse & Abdeckungen</div>
+        <div class="d">Elektronikboxen, Deckel, Clips, Schaltereinbauten.</div>
+      </div>
+      <div class="mini" role="listitem">
+        <div class="t">Ersatzteile (nicht sicherheitsrelevant)</div>
+        <div class="d">Knöpfe, Kappen, Führungen, Schieber, Abstandhalter.</div>
+      </div>
+    </div>
 
-  <div class="cta">
-    <a class="btn btn-primary" href="mailto:shop.mach3d@gmail.com">Offerte per E-Mail</a>
-    <a class="btn btn-whatsapp" href="https://wa.me/41792386843" target="_blank">Offerte per WhatsApp</a>
+    <p class="small">
+      Wenn du unsicher bist, ob dein Teil geeignet ist: Foto + grobe Masse schicken – ich sag dir ehrlich, ob’s Sinn macht.
+    </p>
   </div>
 
-  <p class="small">
-    Für eine schnelle Offerte bitte Foto + grobe Masse (mm) mitsenden.
-  </p>
-</div>
+  <div class="card" id="preise">
+    <h2>Preise</h2>
+    <p>
+      Ich kann deine realen Preise nicht kennen oder “richtig raten”. Unten ist deshalb eine <strong>professionelle Preis-Struktur</strong>
+      als Vorlage. Du ersetzt die Beträge durch deine echten CHF-Preise (oder stellst alles auf “Preis auf Anfrage”).
+    </p>
 
-<div class="card">
-  <h2>Impressum</h2>
-  MACH3D<br>
-  [Vollständiger Name]<br>
-  [Strasse + Nr.]<br>
-  [PLZ Ort], Schweiz
-</div>
+    <div class="pricing" role="list">
+      <div class="price-card" role="listitem">
+        <div class="name">3D-Druck nach Datei</div>
+        <div class="price">Preis auf Anfrage</div>
+        <div class="hint">Vorlage: Material + Druckzeit + Nacharbeit</div>
+        <ul class="ul">
+          <li>Prüfung Druckbarkeit & Orientierung</li>
+          <li>Standard-Nacharbeit (Kanten, Support)</li>
+          <li>Abholung oder Versand</li>
+        </ul>
+      </div>
+
+      <div class="price-card popular" role="listitem">
+        <div class="label">Beliebt</div>
+        <div class="name">CAD + 3D-Druck</div>
+        <div class="price">Preis auf Anfrage</div>
+        <div class="hint">Vorlage: CAD-Aufwand + Druck</div>
+        <ul class="ul">
+          <li>CAD-Konstruktion nach Skizze/Masse</li>
+          <li>1–2 Iterationen (anpassbar)</li>
+          <li>Dateiübergabe (wenn gewünscht)</li>
+        </ul>
+      </div>
+
+      <div class="price-card" role="listitem">
+        <div class="name">Kleinserie</div>
+        <div class="price">Preis auf Anfrage</div>
+        <div class="hint">Vorlage: Staffelpreis je Stück</div>
+        <ul class="ul">
+          <li>Reproduzierbare Einstellungen</li>
+          <li>Stückzahl-Discount möglich</li>
+          <li>Qualitätscheck je Charge</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:16px;">
+      <strong>Optional (falls du willst):</strong> Ergänze hier klar, was “inklusive” ist (z.&nbsp;B. Support-Entfernung),
+      und was extra kostet (z.&nbsp;B. Lackieren, besondere Nacharbeit, Express).
+    </div>
+  </div>
+
+  <div class="card" id="prozess">
+    <h2>Ablauf</h2>
+    <div class="kv">
+      <div class="k">1) Anfrage</div><div class="v">Foto/Skizze + Masse oder Datei (STL/STEP) senden</div>
+      <div class="k">2) Klärung</div><div class="v">Material/Anforderungen, Toleranz, Einsatzbereich</div>
+      <div class="k">3) Offerte</div><div class="v">Transparente Kosten & Lieferzeit</div>
+      <div class="k">4) Produktion</div><div class="v">Druck, Nacharbeit, Qualitätscheck</div>
+      <div class="k">5) Übergabe</div><div class="v">Abholung oder Versand</div>
+    </div>
+  </div>
+
+  <div class="card" id="beispiele">
+    <h2>Beispiele</h2>
+    <p class="small">Tipp: Klick auf ein Bild öffnet die Vorschau (Lightbox).</p>
+
+    <div class="gallery" aria-label="Galerie">
+      <div class="gallery-item"
+           data-title="Halterung / Adapter"
+           data-caption="Funktionales Bauteil für präzise technische Anwendungen."
+           data-src="images/teil1.jpg"
+           tabindex="0"
+           role="button"
+           aria-label="Bild öffnen: Halterung / Adapter">
+        <img src="images/teil1.jpg" alt="Halterung / Adapter">
+        <div class="gallery-caption">
+          <strong>Halterung / Adapter</strong>
+          Funktionales Bauteil für präzise technische Anwendungen.
+        </div>
+      </div>
+
+      <div class="gallery-item"
+           data-title="Elektronik-Gehäuse"
+           data-caption="Individuell konstruiert und massgenau gefertigt."
+           data-src="images/teil2.jpg"
+           tabindex="0"
+           role="button"
+           aria-label="Bild öffnen: Elektronik-Gehäuse">
+        <img src="images/teil2.jpg" alt="Elektronik-Gehäuse">
+        <div class="gallery-caption">
+          <strong>Elektronik-Gehäuse</strong>
+          Individuell konstruiert und massgenau gefertigt.
+        </div>
+      </div>
+
+      <div class="gallery-item"
+           data-title="Ersatzteil (nicht sicherheitsrelevant)"
+           data-caption="Nach Muster oder technischer Zeichnung gefertigt."
+           data-src="images/teil3.jpg"
+           tabindex="0"
+           role="button"
+           aria-label="Bild öffnen: Ersatzteil (nicht sicherheitsrelevant)">
+        <img src="images/teil3.jpg" alt="Ersatzteil (nicht sicherheitsrelevant)">
+        <div class="gallery-caption">
+          <strong>Ersatzteil (nicht sicherheitsrelevant)</strong>
+          Nach Muster oder technischer Zeichnung gefertigt.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="offerte">
+    <h2>Schnell-Offerte (interaktiv)</h2>
+    <p>
+      Dieses Formular öffnet eine E-Mail mit allen Angaben. Es berechnet <strong>keinen echten Preis</strong> (das kann es ohne deine
+      realen Kalkulationswerte nicht), aber es sammelt sauber die Infos, die du für eine schnelle Offerte brauchst.
+    </p>
+
+    <form id="quoteForm">
+      <div class="form-grid">
+        <div class="field">
+          <label for="service">Leistung</label>
+          <select id="service" name="service">
+            <option value="3D-Druck nach Datei">3D-Druck nach Datei</option>
+            <option value="CAD + 3D-Druck">CAD + 3D-Druck</option>
+            <option value="Kleinserie">Kleinserie</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="urgency">Dringlichkeit</label>
+          <select id="urgency" name="urgency">
+            <option value="Normal">Normal</option>
+            <option value="Express (falls möglich)">Express (falls möglich)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="material">Material (Wunsch)</label>
+          <select id="material" name="material">
+            <option value="Offen / egal">Offen / egal</option>
+            <option value="PLA (Standard)">PLA (Standard)</option>
+            <option value="PETG (robuster)">PETG (robuster)</option>
+            <option value="ABS/ASA (wärme-/UV-beständiger)">ABS/ASA (wärme-/UV-beständiger)</option>
+            <option value="Andere / nach Absprache">Andere / nach Absprache</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="qty">Stückzahl</label>
+          <input id="qty" name="qty" type="number" min="1" value="1" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="dims">Grobe Masse (mm) / oder Hinweis zur Datei</label>
+        <input id="dims" name="dims" type="text" placeholder="z. B. 80×35×20 mm / oder: STL vorhanden" />
+      </div>
+
+      <div class="field">
+        <label for="usecase">Anwendung / Belastung / Umgebung</label>
+        <input id="usecase" name="usecase" type="text" placeholder="z. B. Halter im Innenraum, leicht belastet, 30–40°C" />
+      </div>
+
+      <div class="field">
+        <label for="msg">Details / Wünsche</label>
+        <textarea id="msg" name="msg" placeholder="z. B. Passung, Schraubenlöcher, Gewinde, Farbe, Toleranzwunsch ..."></textarea>
+      </div>
+
+      <div class="cta">
+        <button class="btn btn-primary" type="submit">E-Mail mit Anfrage öffnen</button>
+        <a class="btn btn-whatsapp" id="waLink" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp öffnen</a>
+      </div>
+
+      <p class="small">
+        Tipp: Für WhatsApp einfach das Formular ausfüllen und den Text unten kopieren.
+      </p>
+
+      <div class="note" id="copyBox">
+        <strong>Copy-Text:</strong>
+        <div style="margin-top:8px; white-space:pre-wrap;" id="copyText">—</div>
+        <div class="cta" style="margin-top:12px;">
+          <button class="btn" type="button" id="copyBtn">Text kopieren</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="card" id="faq">
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details>
+        <summary>Welche Dateien soll ich schicken?</summary>
+        <p>Wenn du schon ein Modell hast: STL oder STEP. Wenn nicht: Foto/Skizze + Masse (mm) reichen meist für den Start.</p>
+      </details>
+      <details>
+        <summary>Machst du auch sicherheitsrelevante Teile?</summary>
+        <p>Standardmässig nein. Für sicherheitskritische Anwendungen braucht es klare Spezifikationen und Freigaben – sonst ist das Risiko zu hoch.</p>
+      </details>
+      <details>
+        <summary>Kann ich mehrere Varianten testen?</summary>
+        <p>Ja. Oft lohnt sich ein Prototyp (oder 2–3 Varianten), bevor man eine Kleinserie macht.</p>
+      </details>
+      <details>
+        <summary>Wie schnell geht das?</summary>
+        <p>Kommt auf Teilgrösse, Material und Auslastung an. Mit einer sauberen Anfrage (Foto/Datei + Masse) geht’s am schnellsten.</p>
+      </details>
+    </div>
+  </div>
+
+  <div class="card" id="kontakt">
+    <h2>Kontakt</h2>
+
+    <p><strong>E-Mail:</strong> <a href="mailto:shop.mach3d@gmail.com">shop.mach3d@gmail.com</a></p>
+    <p><strong>WhatsApp:</strong> <a href="https://wa.me/41792386843" target="_blank" rel="noopener">+41 79 238 68 43</a></p>
+
+    <div class="cta">
+      <a class="btn btn-primary" href="mailto:shop.mach3d@gmail.com?subject=MACH3D%20Offerte">Offerte per E-Mail</a>
+      <a class="btn btn-whatsapp" href="https://wa.me/41792386843" target="_blank" rel="noopener">Offerte per WhatsApp</a>
+    </div>
+
+    <p class="small">
+      Für eine schnelle Offerte bitte Foto + grobe Masse (mm) mitsenden. Bei Datei: STL/STEP anhängen.
+    </p>
+  </div>
+
+  <div class="card" id="impressum">
+    <h2>Impressum</h2>
+    MACH3D<br>
+    [Vollständiger Name]<br>
+    [Strasse + Nr.]<br>
+    [PLZ Ort], Schweiz
+  </div>
 
 </section>
 
 <footer>
   © 2026 MACH3D • Dietikon (ZH)
 </footer>
+
+<button id="toTop" aria-label="Nach oben">↑</button>
+
+<!-- Modal -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-label="Bildvorschau">
+    <div class="modal-top">
+      <div class="title" id="modalTitle">Vorschau</div>
+      <button id="modalClose" type="button">Schliessen</button>
+    </div>
+    <img class="modal-img" id="modalImg" alt="" />
+    <div class="modal-caption" id="modalCaption"></div>
+  </div>
+</div>
+
+<script>
+/* Active nav highlight based on section in view */
+const navLinks = Array.from(document.querySelectorAll("nav a"));
+const sections = navLinks
+  .map(a => document.querySelector(a.getAttribute("href")))
+  .filter(Boolean);
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      navLinks.forEach(a => a.classList.remove("active"));
+      const id = "#" + entry.target.id;
+      const link = navLinks.find(a => a.getAttribute("href") === id);
+      if(link) link.classList.add("active");
+    }
+  });
+}, { rootMargin: "-30% 0px -60% 0px", threshold: 0.01 });
+
+sections.forEach(s => obs.observe(s));
+
+/* Back to top */
+const toTop = document.getElementById("toTop");
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 600) toTop.classList.add("show");
+  else toTop.classList.remove("show");
+});
+toTop.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+
+/* Gallery modal (lightbox) */
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalTitle = document.getElementById("modalTitle");
+const modalCaption = document.getElementById("modalCaption");
+const modalClose = document.getElementById("modalClose");
+
+function openModal(item){
+  const src = item.dataset.src;
+  const title = item.dataset.title || "Vorschau";
+  const cap = item.dataset.caption || "";
+  modalTitle.textContent = title;
+  modalCaption.textContent = cap;
+  modalImg.src = src;
+  modalImg.alt = title;
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  modalClose.focus();
+}
+function closeModal(){
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  modalImg.src = "";
+}
+document.querySelectorAll(".gallery-item").forEach(item => {
+  item.addEventListener("click", () => openModal(item));
+  item.addEventListener("keydown", (e) => {
+    if(e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(item); }
+  });
+});
+modalClose.addEventListener("click", closeModal);
+modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+document.addEventListener("keydown", (e) => { if(e.key === "Escape" && modal.classList.contains("open")) closeModal(); });
+
+/* Quote form -> mailto + WhatsApp copy text */
+const quoteForm = document.getElementById("quoteForm");
+const copyText = document.getElementById("copyText");
+const copyBtn = document.getElementById("copyBtn");
+const waLink = document.getElementById("waLink");
+
+function buildQuoteText(){
+  const service = document.getElementById("service").value;
+  const urgency = document.getElementById("urgency").value;
+  const material = document.getElementById("material").value;
+  const qty = document.getElementById("qty").value;
+  const dims = document.getElementById("dims").value.trim();
+  const usecase = document.getElementById("usecase").value.trim();
+  const msg = document.getElementById("msg").value.trim();
+
+  return [
+    "Offertanfrage – MACH3D",
+    "----------------------",
+    "Leistung: " + service,
+    "Dringlichkeit: " + urgency,
+    "Materialwunsch: " + material,
+    "Stückzahl: " + qty,
+    "Masse/Datei: " + (dims || "—"),
+    "Anwendung: " + (usecase || "—"),
+    "Details: " + (msg || "—"),
+    "",
+    "Anhänge (falls vorhanden): STL/STEP, Fotos, Skizzen, Zeichnung"
+  ].join("\n");
+}
+
+function refreshCopy(){
+  const text = buildQuoteText();
+  copyText.textContent = text;
+
+  // Optional: WhatsApp Link mit Text (Achtung: längere Texte können abgeschnitten werden je nach Gerät)
+  const encoded = encodeURIComponent(text);
+  waLink.href = "https://wa.me/41792386843?text=" + encoded;
+}
+
+["service","urgency","material","qty","dims","usecase","msg"].forEach(id => {
+  document.getElementById(id).addEventListener("input", refreshCopy);
+  document.getElementById(id).addEventListener("change", refreshCopy);
+});
+refreshCopy();
+
+copyBtn.addEventListener("click", async () => {
+  try{
+    await navigator.clipboard.writeText(copyText.textContent);
+    copyBtn.textContent = "Kopiert ✅";
+    setTimeout(()=> copyBtn.textContent="Text kopieren", 1400);
+  }catch(err){
+    copyBtn.textContent = "Kopieren nicht möglich";
+    setTimeout(()=> copyBtn.textContent="Text kopieren", 1600);
+  }
+});
+
+quoteForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const text = buildQuoteText();
+  const subject = encodeURIComponent("MACH3D Offerte – Anfrage");
+  const body = encodeURIComponent(text);
+  window.location.href = "mailto:shop.mach3d@gmail.com?subject=" + subject + "&body=" + body;
+});
+
+/* Status pill: rein kosmetisch / Vorlage */
+const statusPill = document.getElementById("statusPill");
+const hours = new Date().getHours();
+if(hours >= 18 || hours < 8){
+  statusPill.textContent = "Antwort: nächster Werktag*";
+}
+</script>
 
 </body>
 </html>
