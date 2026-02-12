@@ -17,6 +17,7 @@
   --accent2:#7aa2ff;
   --ok:#22c55e;
   --warn:#f59e0b;
+  --danger:#ef4444;
   --radius:16px;
   --shadow: 0 16px 40px rgba(0,0,0,.25);
 }
@@ -26,18 +27,21 @@ html{scroll-behavior:smooth;}
 body{
   margin:0;
   font-family:Arial, sans-serif;
-  background:radial-gradient(1200px 700px at 20% -10%, rgba(79,124,255,.18), transparent 55%),
-             radial-gradient(1000px 600px at 100% 0%, rgba(122,162,255,.12), transparent 55%),
-             var(--bg);
+  background:
+    radial-gradient(1200px 700px at 20% -10%, rgba(79,124,255,.18), transparent 55%),
+    radial-gradient(1000px 600px at 100% 0%, rgba(122,162,255,.12), transparent 55%),
+    radial-gradient(900px 600px at 0% 90%, rgba(34,197,94,.06), transparent 55%),
+    var(--bg);
   color:var(--text);
   line-height:1.6;
 }
 
 a{color:inherit}
+img{max-width:100%}
 
 header{
   text-align:center;
-  padding:86px 20px 54px;
+  padding:90px 20px 56px;
   border-bottom:1px solid var(--line);
   position:relative;
   overflow:hidden;
@@ -65,8 +69,18 @@ header p{
   font-size:18px;
   max-width:920px;
 }
+
+.hero-actions{
+  position:relative;
+  margin-top:26px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
 .badges{
-  margin-top:22px;
+  margin-top:18px;
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
@@ -133,6 +147,7 @@ nav a.active{
   background:rgba(0,0,0,.14);
   border-radius:999px;
   padding:8px 10px;
+  white-space:nowrap;
 }
 
 section{
@@ -159,15 +174,15 @@ section{
 }
 .card + .card{margin-top:22px;}
 
-h2{
-  margin:0 0 18px 0;
-  font-size:26px;
-}
-h3{
-  margin:18px 0 10px;
-  font-size:18px;
-}
+h2{margin:0 0 18px 0;font-size:26px;}
+h3{margin:18px 0 10px;font-size:18px;}
 p{margin:10px 0;}
+
+hr.sep{
+  border:0;
+  border-top:1px solid rgba(47,57,77,.65);
+  margin:18px 0;
+}
 
 .kv{
   display:grid;
@@ -183,12 +198,6 @@ p{margin:10px 0;}
   .kv div{border-bottom:none}
   .kv .k{padding-bottom:0}
   .kv .v{padding-top:0;border-bottom:1px solid rgba(47,57,77,.55);}
-}
-
-hr.sep{
-  border:0;
-  border-top:1px solid rgba(47,57,77,.65);
-  margin:18px 0;
 }
 
 /* Mini cards */
@@ -208,6 +217,48 @@ hr.sep{
 .mini .d{color:var(--muted); font-size:13px; margin-top:6px;}
 @media (max-width: 900px){
   .mini-grid{grid-template-columns:1fr;}
+}
+
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+  margin-top:14px;
+}
+.stat{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
+}
+.stat .num{
+  font-size:20px;
+  font-weight:bold;
+}
+.stat .lab{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:4px;
+}
+@media(max-width:900px){
+  .stats{grid-template-columns:1fr;}
+}
+
+/* Chips */
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+}
+.chip{
+  font-size:12px;
+  color:var(--muted);
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.12);
+  border-radius:999px;
+  padding:8px 10px;
 }
 
 /* Gallery */
@@ -269,19 +320,20 @@ hr.sep{
   background:rgba(0,0,0,.12);
   color:var(--text);
   transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  cursor:pointer;
 }
 .btn:hover{transform: translateY(-1px); border-color:rgba(79,124,255,.35);}
 .btn:active{transform: translateY(0px);}
-
 .btn-primary{
   background:linear-gradient(180deg, rgba(255,255,255,.10), transparent 55%), var(--accent);
   border-color:var(--accent);
 }
 .btn-primary:hover{border-color:var(--accent2);}
-
-.btn-whatsapp{
-  border-color:#25D366;
+.btn-ghost{
+  border-color:rgba(79,124,255,.30);
+  background:rgba(79,124,255,.08);
 }
+.btn-whatsapp{border-color:#25D366;}
 .small{
   font-size:13px;
   color:var(--muted);
@@ -303,9 +355,7 @@ hr.sep{
   position:relative;
   overflow:hidden;
 }
-.price-card.popular{
-  border-color:rgba(79,124,255,.55);
-}
+.price-card.popular{border-color:rgba(79,124,255,.55);}
 .price-card .label{
   position:absolute;
   top:12px;
@@ -318,11 +368,7 @@ hr.sep{
   border-radius:999px;
 }
 .price-card .name{font-weight:bold;font-size:16px;margin-bottom:6px;}
-.price-card .price{
-  font-size:22px;
-  font-weight:bold;
-  margin:10px 0 6px;
-}
+.price-card .price{font-size:22px;font-weight:bold;margin:10px 0 6px;}
 .price-card .hint{font-size:12px;color:var(--muted);}
 .ul{
   margin:12px 0 0;
@@ -331,25 +377,14 @@ hr.sep{
   font-size:13px;
 }
 .ul li{margin:6px 0;}
-
 @media(max-width: 980px){
   .pricing{grid-template-columns:1fr;}
 }
 
 /* Form */
-form{
-  margin-top:14px;
-  display:grid;
-  gap:12px;
-}
-.field{
-  display:grid;
-  gap:6px;
-}
-label{
-  font-size:13px;
-  color:var(--muted);
-}
+form{margin-top:14px;display:grid;gap:12px;}
+.field{display:grid;gap:6px;}
+label{font-size:13px;color:var(--muted);}
 input, select, textarea{
   width:100%;
   padding:12px 12px;
@@ -382,24 +417,46 @@ input:focus, select:focus, textarea:focus{
   font-size:13px;
 }
 .note strong{color:var(--warn)}
+.oknote{
+  border:1px solid rgba(34,197,94,.35);
+  background:rgba(34,197,94,.08);
+  border-radius:14px;
+  padding:14px;
+  font-size:13px;
+}
 
 /* FAQ */
-.faq{
-  margin-top:10px;
-  display:grid;
-  gap:10px;
-}
+.faq{margin-top:10px;display:grid;gap:10px;}
 details{
   background:var(--card2);
   border:1px solid var(--line);
   border-radius:14px;
   padding:12px 14px;
 }
-summary{
-  cursor:pointer;
-  font-weight:bold;
-}
+summary{cursor:pointer;font-weight:bold;}
 details p{color:var(--muted); font-size:13px; margin:10px 0 0;}
+
+/* Testimonials */
+.testimonials{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+  margin-top:14px;
+}
+.tcard{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:16px;
+}
+.tcard .who{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+}
+@media(max-width: 980px){
+  .testimonials{grid-template-columns:1fr;}
+}
 
 /* Modal */
 .modal{
@@ -429,11 +486,7 @@ details p{color:var(--muted); font-size:13px; margin:10px 0 0;}
   padding:12px 14px;
   border-bottom:1px solid var(--line);
 }
-.modal-top .title{
-  font-weight:bold;
-  color:var(--text);
-  font-size:14px;
-}
+.modal-top .title{font-weight:bold;color:var(--text);font-size:14px;}
 .modal-top button{
   border:1px solid var(--line);
   background:rgba(0,0,0,.18);
@@ -449,11 +502,7 @@ details p{color:var(--muted); font-size:13px; margin:10px 0 0;}
   background:#0f141b;
   display:block;
 }
-.modal-caption{
-  padding:14px;
-  color:var(--muted);
-  font-size:13px;
-}
+.modal-caption{padding:14px;color:var(--muted);font-size:13px;}
 
 /* Back to top */
 #toTop{
@@ -493,6 +542,12 @@ footer{
   <h1>MACH3D</h1>
   <p>Technischer 3D-Druck & CAD für funktionale Bauteile – Prototypen, Einzelteile und Kleinserien.</p>
 
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="#offerte">Schnell-Offerte</a>
+    <a class="btn btn-ghost" href="#beispiele">Beispiele ansehen</a>
+    <a class="btn btn-whatsapp" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
   <div class="badges" aria-label="Highlights">
     <div class="badge">CAD-Konstruktion</div>
     <div class="badge">3D-Druck nach Datei</div>
@@ -507,6 +562,7 @@ footer{
     <div class="nav-links">
       <a href="#leistungen">Leistungen</a>
       <a href="#anwendungen">Anwendungen</a>
+      <a href="#material">Material</a>
       <a href="#preise">Preise</a>
       <a href="#prozess">Ablauf</a>
       <a href="#beispiele">Beispiele</a>
@@ -534,7 +590,7 @@ footer{
       <div class="mini-grid" role="list">
         <div class="mini" role="listitem">
           <div class="t">3D-Druck nach Datei</div>
-          <div class="d">Schnell, präzise, inkl. Prüfung der Druckbarkeit.</div>
+          <div class="d">Schnell, präzise, inkl. kurzer Machbarkeitsprüfung.</div>
         </div>
         <div class="mini" role="listitem">
           <div class="t">CAD / Konstruktion</div>
@@ -542,7 +598,7 @@ footer{
         </div>
         <div class="mini" role="listitem">
           <div class="t">Kleinserien</div>
-          <div class="d">Wiederholteile, Ersatzteile (nicht sicherheitsrelevant).</div>
+          <div class="d">Wiederholteile, Adapter, Gehäuse (nicht sicherheitsrelevant).</div>
         </div>
       </div>
 
@@ -555,8 +611,23 @@ footer{
         <div class="k">Qualität</div><div class="v">Saubere Kanten, sinnvolle Ausrichtung, robuste Konstruktion</div>
       </div>
 
+      <div class="stats" aria-label="Kennzahlen (Vorlage)" style="margin-top:18px;">
+        <div class="stat">
+          <div class="num">±0.2–0.5 mm*</div>
+          <div class="lab">Typische Toleranz (abhängig von Geometrie)</div>
+        </div>
+        <div class="stat">
+          <div class="num">1–3 Tage*</div>
+          <div class="lab">Prototyp je nach Auslastung</div>
+        </div>
+        <div class="stat">
+          <div class="num">Kleinserie*</div>
+          <div class="lab">Staffelpreise möglich</div>
+        </div>
+      </div>
+
       <p class="small">
-        * Text ist eine Vorlage. Du kannst ihn anpassen oder entfernen.
+        * Vorlagen-/Richtwerte: bitte an deine realen Fähigkeiten/Prozesse anpassen oder entfernen.
       </p>
     </div>
 
@@ -569,9 +640,21 @@ footer{
         <div class="k">Lieferung</div><div class="v">Versand oder Abholung (nach Absprache)</div>
       </div>
 
+      <hr class="sep"/>
+
+      <h3>Für eine schnelle Offerte</h3>
+      <div class="chips" aria-label="Checkliste">
+        <div class="chip">Foto/Skizze</div>
+        <div class="chip">Masse in mm</div>
+        <div class="chip">Stückzahl</div>
+        <div class="chip">Einsatz/Belastung</div>
+        <div class="chip">Materialwunsch</div>
+        <div class="chip">Deadline (falls nötig)</div>
+      </div>
+
       <div class="note" style="margin-top:16px;">
-        <strong>Hinweis (Sicherheit):</strong> Ich fertige keine sicherheitskritischen Teile (z.&nbsp;B. Bremse, Lenkung, tragende Lastteile)
-        ohne klare Spezifikation und Freigabe durch dich. Teile sind grundsätzlich <em>auf eigene Verantwortung</em> einzusetzen.
+        <strong>Hinweis (Sicherheit):</strong> Keine sicherheitskritischen Teile ohne klare Spezifikation und Freigabe.
+        Einsatz erfolgt grundsätzlich auf eigene Verantwortung.
       </div>
     </div>
   </div>
@@ -590,21 +673,45 @@ footer{
         <div class="d">Elektronikboxen, Deckel, Clips, Schaltereinbauten.</div>
       </div>
       <div class="mini" role="listitem">
-        <div class="t">Ersatzteile (nicht sicherheitsrelevant)</div>
-        <div class="d">Knöpfe, Kappen, Führungen, Schieber, Abstandhalter.</div>
+        <div class="t">Werkstatt / Hobby</div>
+        <div class="d">Jigs, Lehren, Organizer, Halter, Vorrichtungen.</div>
       </div>
     </div>
 
     <p class="small">
-      Wenn du unsicher bist, ob dein Teil geeignet ist: Foto + grobe Masse schicken – ich sag dir ehrlich, ob’s Sinn macht.
+      Wenn du unsicher bist, ob dein Teil geeignet ist: Foto + grobe Masse schicken – dann bekommst du ein klares Ja/Nein.
     </p>
+  </div>
+
+  <div class="card" id="material">
+    <h2>Material & Auswahlhilfe</h2>
+    <p>Kurze Orientierung (als Vorlage). Du kannst die Liste jederzeit erweitern.</p>
+
+    <div class="mini-grid" role="list">
+      <div class="mini" role="listitem">
+        <div class="t">PLA (Standard)</div>
+        <div class="d">Für Prototypen, Gehäuse, leichte Belastung (einfach zu drucken).</div>
+      </div>
+      <div class="mini" role="listitem">
+        <div class="t">PETG (robuster)</div>
+        <div class="d">Zäher als PLA, gut für Halterungen, Clips, leichten Outdoor-Einsatz.</div>
+      </div>
+      <div class="mini" role="listitem">
+        <div class="t">ABS/ASA (wärme/UV)</div>
+        <div class="d">Für höhere Temperaturen/Outdoor (mehr Anspruch in der Fertigung).</div>
+      </div>
+    </div>
+
+    <div class="oknote" style="margin-top:16px;">
+      <strong style="color:var(--ok);">Tipp:</strong> Wenn du mir Anwendung + Temperatur + Belastung sagst, kann ich dir Material und Wandstärken sinnvoll vorschlagen.
+    </div>
   </div>
 
   <div class="card" id="preise">
     <h2>Preise</h2>
     <p>
-      Ich kann deine realen Preise nicht kennen oder “richtig raten”. Unten ist deshalb eine <strong>professionelle Preis-Struktur</strong>
-      als Vorlage. Du ersetzt die Beträge durch deine echten CHF-Preise (oder stellst alles auf “Preis auf Anfrage”).
+      Ich kann deine realen Preise nicht bestätigen. Darum ist das hier eine <strong>saubere Struktur als Vorlage</strong>.
+      Ersetze „Preis auf Anfrage“ durch deine echten CHF-Werte (oder lass es so).
     </p>
 
     <div class="pricing" role="list">
@@ -613,8 +720,8 @@ footer{
         <div class="price">Preis auf Anfrage</div>
         <div class="hint">Vorlage: Material + Druckzeit + Nacharbeit</div>
         <ul class="ul">
-          <li>Prüfung Druckbarkeit & Orientierung</li>
-          <li>Standard-Nacharbeit (Kanten, Support)</li>
+          <li>Machbarkeitscheck & Orientierung</li>
+          <li>Standard-Nacharbeit</li>
           <li>Abholung oder Versand</li>
         </ul>
       </div>
@@ -625,9 +732,9 @@ footer{
         <div class="price">Preis auf Anfrage</div>
         <div class="hint">Vorlage: CAD-Aufwand + Druck</div>
         <ul class="ul">
-          <li>CAD-Konstruktion nach Skizze/Masse</li>
+          <li>CAD nach Skizze/Masse</li>
           <li>1–2 Iterationen (anpassbar)</li>
-          <li>Dateiübergabe (wenn gewünscht)</li>
+          <li>Dateiübergabe optional</li>
         </ul>
       </div>
 
@@ -642,27 +749,26 @@ footer{
         </ul>
       </div>
     </div>
-
-    <div class="note" style="margin-top:16px;">
-      <strong>Optional (falls du willst):</strong> Ergänze hier klar, was “inklusive” ist (z.&nbsp;B. Support-Entfernung),
-      und was extra kostet (z.&nbsp;B. Lackieren, besondere Nacharbeit, Express).
-    </div>
   </div>
 
   <div class="card" id="prozess">
     <h2>Ablauf</h2>
     <div class="kv">
-      <div class="k">1) Anfrage</div><div class="v">Foto/Skizze + Masse oder Datei (STL/STEP) senden</div>
-      <div class="k">2) Klärung</div><div class="v">Material/Anforderungen, Toleranz, Einsatzbereich</div>
-      <div class="k">3) Offerte</div><div class="v">Transparente Kosten & Lieferzeit</div>
-      <div class="k">4) Produktion</div><div class="v">Druck, Nacharbeit, Qualitätscheck</div>
-      <div class="k">5) Übergabe</div><div class="v">Abholung oder Versand</div>
+      <div class="k">1) Anfrage</div><div class="v">Foto/Skizze + Masse oder Datei (STL/STEP)</div>
+      <div class="k">2) Klärung</div><div class="v">Material, Toleranzen, Einsatzbereich</div>
+      <div class="k">3) Offerte</div><div class="v">Kosten & Lieferzeit</div>
+      <div class="k">4) Produktion</div><div class="v">Druck, Nacharbeit, Check</div>
+      <div class="k">5) Übergabe</div><div class="v">Versand oder Abholung</div>
+    </div>
+
+    <div class="note" style="margin-top:16px;">
+      <strong>Pro-Tipp:</strong> Für Passungen am besten 1 Prototyp drucken, dann finalisieren.
     </div>
   </div>
 
   <div class="card" id="beispiele">
     <h2>Beispiele</h2>
-    <p class="small">Tipp: Klick auf ein Bild öffnet die Vorschau (Lightbox).</p>
+    <p class="small">Klick auf ein Bild öffnet die Vorschau (Lightbox).</p>
 
     <div class="gallery" aria-label="Galerie">
       <div class="gallery-item"
@@ -707,13 +813,31 @@ footer{
         </div>
       </div>
     </div>
+
+    <div class="card" style="margin-top:18px; box-shadow:none;">
+      <h3>Mini-Referenzen (Vorlage)</h3>
+      <p class="small">Optional: wenn du echte Reviews hast, ersetze den Text. Sonst lieber weglassen.</p>
+      <div class="testimonials">
+        <div class="tcard">
+          „Saubere Lösung, passgenau beim ersten Versuch.“<br>
+          <div class="who">— Kunde (Beispieltext)</div>
+        </div>
+        <div class="tcard">
+          „Schnell reagiert, Offerte klar, Teil funktioniert top.“<br>
+          <div class="who">— Kunde (Beispieltext)</div>
+        </div>
+        <div class="tcard">
+          „CAD-Umsetzung nach Foto war erstaunlich genau.“<br>
+          <div class="who">— Kunde (Beispieltext)</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="card" id="offerte">
     <h2>Schnell-Offerte (interaktiv)</h2>
     <p>
-      Dieses Formular öffnet eine E-Mail mit allen Angaben. Es berechnet <strong>keinen echten Preis</strong> (das kann es ohne deine
-      realen Kalkulationswerte nicht), aber es sammelt sauber die Infos, die du für eine schnelle Offerte brauchst.
+      Formular öffnet eine E-Mail mit allen Angaben. Es berechnet keinen echten Preis, aber sammelt sauber die Infos.
     </p>
 
     <form id="quoteForm">
@@ -738,8 +862,8 @@ footer{
 
       <div class="form-grid">
         <div class="field">
-          <label for="material">Material (Wunsch)</label>
-          <select id="material" name="material">
+          <label for="materialSel">Material (Wunsch)</label>
+          <select id="materialSel" name="materialSel">
             <option value="Offen / egal">Offen / egal</option>
             <option value="PLA (Standard)">PLA (Standard)</option>
             <option value="PETG (robuster)">PETG (robuster)</option>
@@ -754,36 +878,36 @@ footer{
         </div>
       </div>
 
-      <div class="field">
-        <label for="dims">Grobe Masse (mm) / oder Hinweis zur Datei</label>
-        <input id="dims" name="dims" type="text" placeholder="z. B. 80×35×20 mm / oder: STL vorhanden" />
+      <div class="form-grid">
+        <div class="field">
+          <label for="dims">Grobe Masse (mm) / Hinweis zur Datei</label>
+          <input id="dims" name="dims" type="text" placeholder="z. B. 80×35×20 mm / oder: STL vorhanden" />
+        </div>
+        <div class="field">
+          <label for="temp">Temperatur (optional)</label>
+          <input id="temp" name="temp" type="text" placeholder="z. B. bis 50°C / Motorraum / Indoor" />
+        </div>
       </div>
 
       <div class="field">
         <label for="usecase">Anwendung / Belastung / Umgebung</label>
-        <input id="usecase" name="usecase" type="text" placeholder="z. B. Halter im Innenraum, leicht belastet, 30–40°C" />
+        <input id="usecase" name="usecase" type="text" placeholder="z. B. Halter innen, leicht belastet, Vibration" />
       </div>
 
       <div class="field">
         <label for="msg">Details / Wünsche</label>
-        <textarea id="msg" name="msg" placeholder="z. B. Passung, Schraubenlöcher, Gewinde, Farbe, Toleranzwunsch ..."></textarea>
+        <textarea id="msg" name="msg" placeholder="Passung, Schraubenlöcher, Gewinde, Farbe, Toleranz ..."></textarea>
       </div>
 
       <div class="cta">
         <button class="btn btn-primary" type="submit">E-Mail mit Anfrage öffnen</button>
         <a class="btn btn-whatsapp" id="waLink" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp öffnen</a>
+        <button class="btn" type="button" id="copyBtn">Text kopieren</button>
       </div>
-
-      <p class="small">
-        Tipp: Für WhatsApp einfach das Formular ausfüllen und den Text unten kopieren.
-      </p>
 
       <div class="note" id="copyBox">
         <strong>Copy-Text:</strong>
         <div style="margin-top:8px; white-space:pre-wrap;" id="copyText">—</div>
-        <div class="cta" style="margin-top:12px;">
-          <button class="btn" type="button" id="copyBtn">Text kopieren</button>
-        </div>
       </div>
     </form>
   </div>
@@ -793,19 +917,19 @@ footer{
     <div class="faq">
       <details>
         <summary>Welche Dateien soll ich schicken?</summary>
-        <p>Wenn du schon ein Modell hast: STL oder STEP. Wenn nicht: Foto/Skizze + Masse (mm) reichen meist für den Start.</p>
+        <p>STL oder STEP ist ideal. Wenn du keine Datei hast: Foto/Skizze + Masse (mm) reicht oft.</p>
       </details>
       <details>
-        <summary>Machst du auch sicherheitsrelevante Teile?</summary>
-        <p>Standardmässig nein. Für sicherheitskritische Anwendungen braucht es klare Spezifikationen und Freigaben – sonst ist das Risiko zu hoch.</p>
+        <summary>Was ist mit Passungen/Toleranzen?</summary>
+        <p>Für kritische Passungen lohnt sich ein Prototyp. Dann wird final angepasst.</p>
       </details>
       <details>
-        <summary>Kann ich mehrere Varianten testen?</summary>
-        <p>Ja. Oft lohnt sich ein Prototyp (oder 2–3 Varianten), bevor man eine Kleinserie macht.</p>
+        <summary>Machst du auch Metall- oder Resin-Druck?</summary>
+        <p>Wenn du das anbietest: hier ergänzen. Sonst entfernen oder „auf Anfrage“ schreiben.</p>
       </details>
       <details>
-        <summary>Wie schnell geht das?</summary>
-        <p>Kommt auf Teilgrösse, Material und Auslastung an. Mit einer sauberen Anfrage (Foto/Datei + Masse) geht’s am schnellsten.</p>
+        <summary>Wie läuft Zahlung/Abholung?</summary>
+        <p>Hier deine echte Regel rein: Bar/TWINT/Überweisung, Versandkosten, Abholzeiten usw.</p>
       </details>
     </div>
   </div>
@@ -855,7 +979,7 @@ footer{
 </div>
 
 <script>
-/* Active nav highlight based on section in view */
+/* Active nav highlight */
 const navLinks = Array.from(document.querySelectorAll("nav a"));
 const sections = navLinks
   .map(a => document.querySelector(a.getAttribute("href")))
@@ -882,7 +1006,7 @@ window.addEventListener("scroll", () => {
 });
 toTop.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
 
-/* Gallery modal (lightbox) */
+/* Gallery modal */
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modalImg");
 const modalTitle = document.getElementById("modalTitle");
@@ -925,9 +1049,10 @@ const waLink = document.getElementById("waLink");
 function buildQuoteText(){
   const service = document.getElementById("service").value;
   const urgency = document.getElementById("urgency").value;
-  const material = document.getElementById("material").value;
+  const material = document.getElementById("materialSel").value;
   const qty = document.getElementById("qty").value;
   const dims = document.getElementById("dims").value.trim();
+  const temp = document.getElementById("temp").value.trim();
   const usecase = document.getElementById("usecase").value.trim();
   const msg = document.getElementById("msg").value.trim();
 
@@ -939,6 +1064,7 @@ function buildQuoteText(){
     "Materialwunsch: " + material,
     "Stückzahl: " + qty,
     "Masse/Datei: " + (dims || "—"),
+    "Temperatur: " + (temp || "—"),
     "Anwendung: " + (usecase || "—"),
     "Details: " + (msg || "—"),
     "",
@@ -949,13 +1075,10 @@ function buildQuoteText(){
 function refreshCopy(){
   const text = buildQuoteText();
   copyText.textContent = text;
-
-  // Optional: WhatsApp Link mit Text (Achtung: längere Texte können abgeschnitten werden je nach Gerät)
-  const encoded = encodeURIComponent(text);
-  waLink.href = "https://wa.me/41792386843?text=" + encoded;
+  waLink.href = "https://wa.me/41792386843?text=" + encodeURIComponent(text);
 }
 
-["service","urgency","material","qty","dims","usecase","msg"].forEach(id => {
+["service","urgency","materialSel","qty","dims","temp","usecase","msg"].forEach(id => {
   document.getElementById(id).addEventListener("input", refreshCopy);
   document.getElementById(id).addEventListener("change", refreshCopy);
 });
@@ -980,11 +1103,16 @@ quoteForm.addEventListener("submit", (e) => {
   window.location.href = "mailto:shop.mach3d@gmail.com?subject=" + subject + "&body=" + body;
 });
 
-/* Status pill: rein kosmetisch / Vorlage */
+/* Status pill (Vorlage) */
 const statusPill = document.getElementById("statusPill");
 const hours = new Date().getHours();
-if(hours >= 18 || hours < 8){
+const day = new Date().getDay(); // 0 So, 6 Sa
+if(day === 0 || day === 6){
   statusPill.textContent = "Antwort: nächster Werktag*";
+}else if(hours >= 18 || hours < 8){
+  statusPill.textContent = "Antwort: heute/ morgen*";
+}else{
+  statusPill.textContent = "Antwort: i.d.R. < 24h*";
 }
 </script>
 
