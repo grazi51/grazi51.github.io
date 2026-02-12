@@ -40,7 +40,7 @@ img{max-width:100%}
 
 header{
   text-align:center;
-  padding:90px 20px 56px;
+  padding:92px 20px 54px;
   border-bottom:1px solid var(--line);
   position:relative;
   overflow:hidden;
@@ -69,17 +69,8 @@ header p{
   max-width:920px;
 }
 
-.hero-actions{
-  position:relative;
-  margin-top:26px;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
 .badges{
-  margin-top:18px;
+  margin-top:20px;
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
@@ -133,20 +124,6 @@ nav a.active{
   color:var(--text);
   border-color:rgba(79,124,255,.45);
   background:rgba(79,124,255,.12);
-}
-.nav-cta{
-  display:flex;
-  gap:10px;
-  align-items:center;
-}
-.pill{
-  font-size:12px;
-  color:var(--muted);
-  border:1px solid var(--line);
-  background:rgba(0,0,0,.14);
-  border-radius:999px;
-  padding:8px 10px;
-  white-space:nowrap;
 }
 
 section{
@@ -245,6 +222,14 @@ hr.sep{
   .mini-grid{grid-template-columns:1fr;}
 }
 
+/* “Quick links” Buttons in right card */
+.quick-actions{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
 /* Stats */
 .stats{
   display:grid;
@@ -330,6 +315,7 @@ hr.sep{
 .btn{
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:10px;
   padding:13px 18px;
   border-radius:12px;
@@ -547,6 +533,14 @@ footer{
   font-size:14px;
 }
 
+/* Extra spacing between top grid and Anwendungen */
+.section-spacer{
+  height:18px;
+}
+@media (max-width: 980px){
+  .section-spacer{height:8px;}
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   *{scroll-behavior:auto;}
@@ -561,17 +555,10 @@ footer{
   <h1>MACH3D</h1>
   <p>Technischer 3D-Druck & CAD für funktionale Bauteile – Prototypen, Einzelteile und Komplett-Pakete.</p>
 
-  <div class="hero-actions">
-    <a class="btn btn-primary" href="#offerte">Schnell-Offerte</a>
-    <a class="btn btn-ghost" href="#beispiele">Beispiele ansehen</a>
-    <a class="btn btn-whatsapp" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp</a>
-  </div>
-
   <div class="badges" aria-label="Highlights">
-    <div class="badge">CAD-Konstruktion</div>
-    <div class="badge">3D-Druck nach Datei</div>
+    <div class="badge">Nur Druck</div>
+    <div class="badge">Nur CAD</div>
     <div class="badge">Komplett-Paket</div>
-    <div class="badge">Saubere Offerte</div>
     <div class="badge">Schweiz (ZH)</div>
   </div>
 </header>
@@ -589,10 +576,6 @@ footer{
       <a href="#faq">FAQ</a>
       <a href="#kontakt">Kontakt</a>
     </div>
-    <div class="nav-cta">
-      <span class="pill" id="statusPill">Antwort: i.d.R. &lt; 24h*</span>
-      <a class="btn btn-primary" href="#offerte">Schnell-Offerte</a>
-    </div>
   </div>
 </nav>
 
@@ -602,22 +585,22 @@ footer{
     <div class="card" id="leistungen">
       <h2>Leistungen</h2>
       <p>
-        Ich fertige funktionale 3D-Druckteile für technische Anwendungen – nach Kundendatei (z.&nbsp;B. STL/STEP)
-        oder inklusive kompletter CAD-Konstruktion.
+        Du kannst bei MACH3D zwischen <strong>drei Optionen</strong> wählen – je nachdem, ob du schon eine Datei hast
+        oder ob ich das komplette Teil von Grund auf erstellen soll.
       </p>
 
       <div class="mini-grid" role="list">
         <div class="mini" role="listitem">
-          <div class="t">3D-Druck nach Datei</div>
-          <div class="d">Schnell, präzise, inkl. kurzer Machbarkeitsprüfung.</div>
+          <div class="t">Nur Druck</div>
+          <div class="d">Du lieferst die Datei (STL/STEP) – ich drucke und mache die Nacharbeit.</div>
         </div>
         <div class="mini" role="listitem">
-          <div class="t">CAD / Konstruktion</div>
-          <div class="d">Nach Skizze, Foto + Masse oder Zeichnung.</div>
+          <div class="t">Nur CAD</div>
+          <div class="d">Ich konstruiere das 3D-Modell nach Skizze/Fotos/Massen – du bekommst die Datei.</div>
         </div>
         <div class="mini" role="listitem">
           <div class="t">Komplett-Paket</div>
-          <div class="d">3D-Modell + Ausdruck als fertige Lösung aus einer Hand.</div>
+          <div class="d">Ich konstruiere das Modell <strong>und</strong> drucke das fertige Teil (Modell + Ausdruck).</div>
         </div>
       </div>
 
@@ -626,40 +609,25 @@ footer{
       <h3>Was du bekommst</h3>
       <div class="kv">
         <div class="k">Offerte</div><div class="v">Transparent (Material, Druckzeit, Nacharbeit, Versand/Abholung)</div>
-        <div class="k">Optionen</div><div class="v">Material-/Infill-Varianten, Passungen, Gewinde-/Einpressmuttern (falls gewünscht)</div>
+        <div class="k">Abstimmung</div><div class="v">Materialwahl, Einsatzbereich, grobe Toleranzen / Passungen</div>
         <div class="k">Qualität</div><div class="v">Saubere Kanten, sinnvolle Ausrichtung, robuste Konstruktion</div>
       </div>
-
-      <div class="stats" aria-label="Kennzahlen (Vorlage)" style="margin-top:18px;">
-        <div class="stat">
-          <div class="num">±0.2–0.5 mm*</div>
-          <div class="lab">Typische Toleranz (abhängig von Geometrie)</div>
-        </div>
-        <div class="stat">
-          <div class="num">1–3 Tage*</div>
-          <div class="lab">Prototyp je nach Auslastung</div>
-        </div>
-        <div class="stat">
-          <div class="num">Komplett*</div>
-          <div class="lab">Modell + Druck als Paket</div>
-        </div>
-      </div>
-
-      <p class="small">
-        * Vorlagen-/Richtwerte: bitte an deine realen Prozesse anpassen oder entfernen.
-      </p>
     </div>
 
     <div class="card">
-      <h2>Quick Facts</h2>
-      <div class="kv">
-        <div class="k">Standort</div><div class="v">Dietikon (ZH)</div>
-        <div class="k">Kontakt</div><div class="v">E-Mail & WhatsApp</div>
-        <div class="k">Dateien</div><div class="v">STL / STEP / IGES (je nach Projekt)</div>
-        <div class="k">Lieferung</div><div class="v">Versand oder Abholung (nach Absprache)</div>
+      <h2>Quick Links</h2>
+      <p class="small" style="margin-top:-6px;">
+        Direkt zu den wichtigsten Punkten.
+      </p>
+
+      <div class="quick-actions">
+        <a class="btn btn-primary" href="#offerte">Offerte anfragen</a>
+        <a class="btn btn-ghost" href="#beispiele">Beispiele ansehen</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp öffnen</a>
+        <a class="btn" href="#kontakt">Kontakt</a>
       </div>
 
-      <hr class="sep"/>
+      <hr class="sep" />
 
       <h3>Für eine schnelle Offerte</h3>
       <div class="chips" aria-label="Checkliste">
@@ -668,7 +636,6 @@ footer{
         <div class="chip">Stückzahl</div>
         <div class="chip">Einsatz/Belastung</div>
         <div class="chip">Materialwunsch</div>
-        <div class="chip">Deadline (falls nötig)</div>
       </div>
 
       <div class="note" style="margin-top:16px;">
@@ -677,6 +644,8 @@ footer{
       </div>
     </div>
   </div>
+
+  <div class="section-spacer"></div>
 
   <div class="card" id="anwendungen">
     <h2>Anwendungen</h2>
@@ -698,7 +667,7 @@ footer{
     </div>
 
     <p class="small">
-      Wenn du unsicher bist, ob dein Teil geeignet ist: Foto + grobe Masse schicken – dann bekommst du ein klares Ja/Nein.
+      Wenn du unsicher bist: Foto + grobe Masse schicken – dann bekommst du ein klares Ja/Nein.
     </p>
   </div>
 
@@ -722,7 +691,7 @@ footer{
     </div>
 
     <div class="oknote" style="margin-top:16px;">
-      <strong style="color:var(--ok);">Tipp:</strong> Wenn du mir Anwendung + Temperatur + Belastung sagst, kann ich Material und Wandstärken sinnvoll vorschlagen.
+      <strong style="color:var(--ok);">Tipp:</strong> Wenn du Anwendung + Temperatur + Belastung sagst, kann ich Material und Wandstärken sinnvoll vorschlagen.
     </div>
   </div>
 
@@ -732,11 +701,11 @@ footer{
 
     <div class="pricing" role="list">
       <div class="price-card" role="listitem">
-        <div class="name">3D-Druck nach Datei</div>
+        <div class="name">Nur Druck</div>
         <div class="price">Preis auf Anfrage</div>
         <div class="hint">Material + Druckzeit + Nacharbeit</div>
         <ul class="ul">
-          <li>Machbarkeitscheck & Orientierung</li>
+          <li>Datei-Check (STL/STEP)</li>
           <li>Standard-Nacharbeit</li>
           <li>Abholung oder Versand</li>
         </ul>
@@ -748,16 +717,16 @@ footer{
         <div class="price">Preis auf Anfrage</div>
         <div class="hint">3D-Modell + Ausdruck</div>
         <ul class="ul">
-          <li>CAD-Konstruktion nach Skizze/Masse</li>
+          <li>CAD nach Skizze/Masse</li>
           <li>1–2 Iterationen (anpassbar)</li>
           <li>Druck + Nacharbeit inklusive</li>
         </ul>
       </div>
 
       <div class="price-card" role="listitem">
-        <div class="name">CAD (nur Modell)</div>
+        <div class="name">Nur CAD</div>
         <div class="price">Preis auf Anfrage</div>
-        <div class="hint">Nur Konstruktion / Dateiübergabe</div>
+        <div class="hint">Konstruktion / Dateiübergabe</div>
         <ul class="ul">
           <li>Modell nach Foto/Skizze/Zeichnung</li>
           <li>Export als STEP/STL (nach Absprache)</li>
@@ -771,9 +740,9 @@ footer{
     <h2>Ablauf</h2>
     <div class="kv">
       <div class="k">1) Anfrage</div><div class="v">Foto/Skizze + Masse oder Datei (STL/STEP)</div>
-      <div class="k">2) Klärung</div><div class="v">Material, Toleranzen, Einsatzbereich</div>
+      <div class="k">2) Klärung</div><div class="v">Option (Nur Druck / Nur CAD / Komplett), Material, Einsatz</div>
       <div class="k">3) Offerte</div><div class="v">Kosten & Lieferzeit</div>
-      <div class="k">4) Produktion</div><div class="v">Druck, Nacharbeit, Check</div>
+      <div class="k">4) Umsetzung</div><div class="v">CAD (falls nötig), Druck, Nacharbeit, Check</div>
       <div class="k">5) Übergabe</div><div class="v">Versand oder Abholung</div>
     </div>
 
@@ -829,25 +798,6 @@ footer{
         </div>
       </div>
     </div>
-
-    <div class="card" style="margin-top:18px; box-shadow:none;">
-      <h3>Mini-Referenzen (Vorlage)</h3>
-      <p class="small">Optional: wenn du echte Reviews hast, ersetze den Text. Sonst lieber weglassen.</p>
-      <div class="testimonials">
-        <div class="tcard">
-          „Saubere Lösung, passgenau beim ersten Versuch.“<br>
-          <div class="who">— Kunde (Beispieltext)</div>
-        </div>
-        <div class="tcard">
-          „Schnell reagiert, Offerte klar, Teil funktioniert top.“<br>
-          <div class="who">— Kunde (Beispieltext)</div>
-        </div>
-        <div class="tcard">
-          „CAD-Umsetzung nach Foto war erstaunlich genau.“<br>
-          <div class="who">— Kunde (Beispieltext)</div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="card" id="offerte">
@@ -859,9 +809,9 @@ footer{
         <div class="field">
           <label for="service">Leistung</label>
           <select id="service" name="service">
-            <option value="3D-Druck nach Datei">3D-Druck nach Datei</option>
+            <option value="Nur Druck">Nur Druck</option>
             <option value="Komplett-Paket (3D-Modell + Ausdruck)">Komplett-Paket (3D-Modell + Ausdruck)</option>
-            <option value="CAD (nur Modell)">CAD (nur Modell)</option>
+            <option value="Nur CAD">Nur CAD</option>
           </select>
         </div>
 
@@ -932,8 +882,8 @@ footer{
         <p>STL oder STEP ist ideal. Wenn du keine Datei hast: Foto/Skizze + Masse (mm) reicht oft.</p>
       </details>
       <details>
-        <summary>Was ist der Unterschied: CAD (nur Modell) vs. Komplett-Paket?</summary>
-        <p>CAD (nur Modell) = du bekommst die Datei. Komplett-Paket = ich erstelle das Modell und drucke das Teil auch.</p>
+        <summary>Was ist der Unterschied: Nur CAD vs. Komplett-Paket?</summary>
+        <p>Nur CAD = du bekommst die Datei. Komplett-Paket = ich erstelle das Modell und drucke das Teil auch.</p>
       </details>
       <details>
         <summary>Wie läuft Zahlung/Abholung?</summary>
@@ -1095,19 +1045,6 @@ quoteForm.addEventListener("submit", (e) => {
   const body = encodeURIComponent(text);
   window.location.href = "mailto:shop.mach3d@gmail.com?subject=" + subject + "&body=" + body;
 });
-
-/* Status pill (Vorlage) */
-const statusPill = document.getElementById("statusPill");
-const now = new Date();
-const hours = now.getHours();
-const day = now.getDay(); // 0 So, 6 Sa
-if(day === 0 || day === 6){
-  statusPill.textContent = "Antwort: nächster Werktag*";
-}else if(hours >= 18 || hours < 8){
-  statusPill.textContent = "Antwort: heute/ morgen*";
-}else{
-  statusPill.textContent = "Antwort: i.d.R. < 24h*";
-}
 </script>
 
 </body>
