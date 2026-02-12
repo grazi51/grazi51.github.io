@@ -199,6 +199,33 @@ hr.sep{
   .kv .v{padding-top:0;border-bottom:1px solid rgba(47,57,77,.55);}
 }
 
+/* ===== Symmetrie: gleiche Höhen in Grid-Kästchen ===== */
+.mini-grid,
+.stats,
+.pricing,
+.testimonials{
+  align-items:stretch;
+}
+.mini-grid{grid-auto-rows:1fr;}
+.stats{grid-auto-rows:1fr;}
+.pricing{grid-auto-rows:1fr;}
+.testimonials{grid-auto-rows:1fr;}
+
+.mini,
+.stat,
+.price-card,
+.tcard{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.mini .d,
+.stat .lab,
+.price-card .hint,
+.tcard .who{
+  margin-top:auto;
+}
+
 /* Mini cards */
 .mini-grid{
   display:grid;
@@ -213,7 +240,7 @@ hr.sep{
   padding:16px;
 }
 .mini .t{font-weight:bold}
-.mini .d{color:var(--muted); font-size:13px; margin-top:6px;}
+.mini .d{color:var(--muted); font-size:13px; margin-top:10px;}
 @media (max-width: 900px){
   .mini-grid{grid-template-columns:1fr;}
 }
@@ -232,7 +259,7 @@ hr.sep{
   padding:16px;
 }
 .stat .num{font-size:20px;font-weight:bold;}
-.stat .lab{color:var(--muted);font-size:12px;margin-top:4px;}
+.stat .lab{color:var(--muted);font-size:12px;margin-top:10px;}
 @media(max-width:900px){
   .stats{grid-template-columns:1fr;}
 }
@@ -361,7 +388,7 @@ hr.sep{
 }
 .price-card .name{font-weight:bold;font-size:16px;margin-bottom:6px;}
 .price-card .price{font-size:22px;font-weight:bold;margin:10px 0 6px;}
-.price-card .hint{font-size:12px;color:var(--muted);}
+.price-card .hint{font-size:12px;color:var(--muted); margin-top:10px;}
 .ul{
   margin:12px 0 0;
   padding-left:18px;
@@ -532,7 +559,7 @@ footer{
 
 <header>
   <h1>MACH3D</h1>
-  <p>Technischer 3D-Druck & CAD für funktionale Bauteile – Prototypen, Einzelteile und Kleinserien.</p>
+  <p>Technischer 3D-Druck & CAD für funktionale Bauteile – Prototypen, Einzelteile und Komplett-Pakete.</p>
 
   <div class="hero-actions">
     <a class="btn btn-primary" href="#offerte">Schnell-Offerte</a>
@@ -543,7 +570,7 @@ footer{
   <div class="badges" aria-label="Highlights">
     <div class="badge">CAD-Konstruktion</div>
     <div class="badge">3D-Druck nach Datei</div>
-    <div class="badge">Kleinserien</div>
+    <div class="badge">Komplett-Paket</div>
     <div class="badge">Saubere Offerte</div>
     <div class="badge">Schweiz (ZH)</div>
   </div>
@@ -589,8 +616,8 @@ footer{
           <div class="d">Nach Skizze, Foto + Masse oder Zeichnung.</div>
         </div>
         <div class="mini" role="listitem">
-          <div class="t">Kleinserien</div>
-          <div class="d">Wiederholteile, Adapter, Gehäuse (nicht sicherheitsrelevant).</div>
+          <div class="t">Komplett-Paket</div>
+          <div class="d">3D-Modell + Ausdruck als fertige Lösung aus einer Hand.</div>
         </div>
       </div>
 
@@ -613,13 +640,13 @@ footer{
           <div class="lab">Prototyp je nach Auslastung</div>
         </div>
         <div class="stat">
-          <div class="num">Kleinserie*</div>
-          <div class="lab">Staffelpreise möglich</div>
+          <div class="num">Komplett*</div>
+          <div class="lab">Modell + Druck als Paket</div>
         </div>
       </div>
 
       <p class="small">
-        * Vorlagen-/Richtwerte: bitte an deine realen Fähigkeiten/Prozesse anpassen oder entfernen.
+        * Vorlagen-/Richtwerte: bitte an deine realen Prozesse anpassen oder entfernen.
       </p>
     </div>
 
@@ -701,9 +728,7 @@ footer{
 
   <div class="card" id="preise">
     <h2>Preise</h2>
-    <p>
-      Preisstruktur als Vorlage. Ersetze „Preis auf Anfrage“ durch deine echten CHF-Werte (oder lass es so).
-    </p>
+    <p>Preisstruktur als Vorlage. Ersetze „Preis auf Anfrage“ durch deine echten CHF-Werte (oder lass es so).</p>
 
     <div class="pricing" role="list">
       <div class="price-card" role="listitem">
@@ -719,24 +744,24 @@ footer{
 
       <div class="price-card popular" role="listitem">
         <div class="label">Beliebt</div>
-        <div class="name">CAD + 3D-Druck</div>
+        <div class="name">Komplett-Paket</div>
         <div class="price">Preis auf Anfrage</div>
-        <div class="hint">CAD-Aufwand + Druck</div>
+        <div class="hint">3D-Modell + Ausdruck</div>
         <ul class="ul">
-          <li>CAD nach Skizze/Masse</li>
+          <li>CAD-Konstruktion nach Skizze/Masse</li>
           <li>1–2 Iterationen (anpassbar)</li>
-          <li>Dateiübergabe optional</li>
+          <li>Druck + Nacharbeit inklusive</li>
         </ul>
       </div>
 
       <div class="price-card" role="listitem">
-        <div class="name">Kleinserie</div>
+        <div class="name">CAD (nur Modell)</div>
         <div class="price">Preis auf Anfrage</div>
-        <div class="hint">Staffelpreis je Stück</div>
+        <div class="hint">Nur Konstruktion / Dateiübergabe</div>
         <ul class="ul">
-          <li>Reproduzierbare Einstellungen</li>
-          <li>Stückzahl-Discount möglich</li>
-          <li>Qualitätscheck je Charge</li>
+          <li>Modell nach Foto/Skizze/Zeichnung</li>
+          <li>Export als STEP/STL (nach Absprache)</li>
+          <li>Ideal vor externem Druck</li>
         </ul>
       </div>
     </div>
@@ -827,9 +852,7 @@ footer{
 
   <div class="card" id="offerte">
     <h2>Schnell-Offerte (interaktiv)</h2>
-    <p>
-      Formular öffnet eine E-Mail mit allen Angaben. Für WhatsApp wird der Text automatisch vorbereitet und direkt geöffnet.
-    </p>
+    <p>Formular öffnet eine E-Mail mit allen Angaben. Für WhatsApp wird der Text direkt vorbereitet und geöffnet.</p>
 
     <form id="quoteForm">
       <div class="form-grid">
@@ -837,8 +860,8 @@ footer{
           <label for="service">Leistung</label>
           <select id="service" name="service">
             <option value="3D-Druck nach Datei">3D-Druck nach Datei</option>
-            <option value="CAD + 3D-Druck">CAD + 3D-Druck</option>
-            <option value="Kleinserie">Kleinserie</option>
+            <option value="Komplett-Paket (3D-Modell + Ausdruck)">Komplett-Paket (3D-Modell + Ausdruck)</option>
+            <option value="CAD (nur Modell)">CAD (nur Modell)</option>
           </select>
         </div>
 
@@ -909,8 +932,8 @@ footer{
         <p>STL oder STEP ist ideal. Wenn du keine Datei hast: Foto/Skizze + Masse (mm) reicht oft.</p>
       </details>
       <details>
-        <summary>Was ist mit Passungen/Toleranzen?</summary>
-        <p>Für kritische Passungen lohnt sich ein Prototyp. Dann wird final angepasst.</p>
+        <summary>Was ist der Unterschied: CAD (nur Modell) vs. Komplett-Paket?</summary>
+        <p>CAD (nur Modell) = du bekommst die Datei. Komplett-Paket = ich erstelle das Modell und drucke das Teil auch.</p>
       </details>
       <details>
         <summary>Wie läuft Zahlung/Abholung?</summary>
@@ -1056,8 +1079,7 @@ function buildQuoteText(){
 }
 
 function refreshWhatsApp(){
-  const text = buildQuoteText();
-  waLink.href = "https://wa.me/41792386843?text=" + encodeURIComponent(text);
+  waLink.href = "https://wa.me/41792386843?text=" + encodeURIComponent(buildQuoteText());
 }
 
 ["service","urgency","materialSel","qty","dims","temp","usecase","msg"].forEach(id => {
