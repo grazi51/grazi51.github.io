@@ -230,25 +230,6 @@ hr.sep{
   gap:10px;
 }
 
-/* Stats */
-.stats{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:14px;
-  margin-top:14px;
-}
-.stat{
-  background:var(--card2);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:16px;
-}
-.stat .num{font-size:20px;font-weight:bold;}
-.stat .lab{color:var(--muted);font-size:12px;margin-top:10px;}
-@media(max-width:900px){
-  .stats{grid-template-columns:1fr;}
-}
-
 /* Chips */
 .chips{
   display:flex;
@@ -441,28 +422,6 @@ details{
 summary{cursor:pointer;font-weight:bold;}
 details p{color:var(--muted); font-size:13px; margin:10px 0 0;}
 
-/* Testimonials */
-.testimonials{
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap:14px;
-  margin-top:14px;
-}
-.tcard{
-  background:var(--card2);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:16px;
-}
-.tcard .who{
-  margin-top:10px;
-  color:var(--muted);
-  font-size:12px;
-}
-@media(max-width: 980px){
-  .testimonials{grid-template-columns:1fr;}
-}
-
 /* Modal */
 .modal{
   position:fixed;
@@ -534,12 +493,8 @@ footer{
 }
 
 /* Extra spacing between top grid and Anwendungen */
-.section-spacer{
-  height:18px;
-}
-@media (max-width: 980px){
-  .section-spacer{height:8px;}
-}
+.section-spacer{ height:18px; }
+@media (max-width: 980px){ .section-spacer{height:8px;} }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
@@ -616,9 +571,7 @@ footer{
 
     <div class="card">
       <h2>Quick Links</h2>
-      <p class="small" style="margin-top:-6px;">
-        Direkt zu den wichtigsten Punkten.
-      </p>
+      <p class="small" style="margin-top:-6px;">Direkt zu den wichtigsten Punkten.</p>
 
       <div class="quick-actions">
         <a class="btn btn-primary" href="#offerte">Offerte anfragen</a>
@@ -666,9 +619,7 @@ footer{
       </div>
     </div>
 
-    <p class="small">
-      Wenn du unsicher bist: Foto + grobe Masse schicken – dann bekommst du ein klares Ja/Nein.
-    </p>
+    <p class="small">Wenn du unsicher bist: Foto + grobe Masse schicken – dann bekommst du ein klares Ja/Nein.</p>
   </div>
 
   <div class="card" id="material">
@@ -695,15 +646,18 @@ footer{
     </div>
   </div>
 
+  <!-- ✅ (4) eingefügt: klare “ab”-Preise wie auf der Website empfohlen -->
   <div class="card" id="preise">
     <h2>Preise</h2>
-    <p>Preisstruktur als Vorlage. Ersetze „Preis auf Anfrage“ durch deine echten CHF-Werte (oder lass es so).</p>
+    <p>
+      Richtwerte (transparent & einfach). Der Endpreis hängt von Geometrie, Material, Druckzeit und Nacharbeit ab.
+    </p>
 
     <div class="pricing" role="list">
       <div class="price-card" role="listitem">
         <div class="name">Nur Druck</div>
-        <div class="price">ab 25 CHF (abhängig von Material, Grösse, Druckzeit)</div>
-        <div class="hint">Material + Druckzeit + Nacharbeit</div>
+        <div class="price">ab 25 CHF</div>
+        <div class="hint">abhängig von Material, Grösse, Druckzeit</div>
         <ul class="ul">
           <li>Datei-Check (STL/STEP)</li>
           <li>Standard-Nacharbeit</li>
@@ -712,28 +666,32 @@ footer{
       </div>
 
       <div class="price-card popular" role="listitem">
-        <div class="label">Beliebt</div>
+        <div class="label">Empfohlen</div>
         <div class="name">Komplett-Paket</div>
-        <div class="price">Preis auf Anfrage</div>
-        <div class="hint">3D-Modell + Ausdruck</div>
+        <div class="price">ab 120 CHF</div>
+        <div class="hint">Modell + Druck (alles aus einer Hand)</div>
         <ul class="ul">
           <li>CAD nach Skizze/Masse</li>
-          <li>1–2 Iterationen (anpassbar)</li>
+          <li>1–2 Iterationen (nach Absprache)</li>
           <li>Druck + Nacharbeit inklusive</li>
         </ul>
       </div>
 
       <div class="price-card" role="listitem">
         <div class="name">Nur CAD</div>
-        <div class="price">50Fr.- pro Stunde</div>
-        <div class="hint">Konstruktion / Dateiübergabe</div>
+        <div class="price">ab 60 CHF</div>
+        <div class="hint">oder nach Aufwand (Stundensatz möglich)</div>
         <ul class="ul">
           <li>Modell nach Foto/Skizze/Zeichnung</li>
           <li>Export als STEP/STL (nach Absprache)</li>
-          <li>Ideal vor externem Druck</li>
+          <li>Dateiübergabe ohne Druck</li>
         </ul>
       </div>
     </div>
+
+    <p class="small" style="margin-top:14px;">
+      Tipp: Wenn du mir Foto/Skizze + Masse + Stückzahl schickst, bekommst du eine klare Offerte.
+    </p>
   </div>
 
   <div class="card" id="prozess">
@@ -753,7 +711,7 @@ footer{
 
   <div class="card" id="beispiele">
     <h2>Beispiele</h2>
-    
+
     <div class="gallery" aria-label="Galerie">
       <div class="gallery-item"
            data-title="Halterung / Adapter"
@@ -938,9 +896,7 @@ footer{
 <script>
 /* Active nav highlight */
 const navLinks = Array.from(document.querySelectorAll("nav a"));
-const sections = navLinks
-  .map(a => document.querySelector(a.getAttribute("href")))
-  .filter(Boolean);
+const sections = navLinks.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
 
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
