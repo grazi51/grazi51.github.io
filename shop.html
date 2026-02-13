@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MACH3D | Shop</title>
+
+<style>
+:root{
+  --bg:#161b22;
+  --card:#1f2633;
+  --card2:#1a212d;
+  --text:#f1f5f9;
+  --muted:#9aa4b2;
+  --line:#2f394d;
+  --accent:#4f7cff;
+  --radius:16px;
+  --shadow: 0 16px 40px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none;}
+header{
+  border-bottom:1px solid var(--line);
+  padding:26px 18px;
+}
+.header-inner{
+  max-width:1100px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.brand{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+}
+.brand strong{font-size:20px; letter-spacing:1px;}
+.brand span{color:var(--muted); font-size:13px;}
+.top-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:11px 14px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.12);
+  color:var(--text);
+  font-weight:bold;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--accent);
+  border-color:var(--accent);
+}
+.container{
+  max-width:1100px;
+  margin:28px auto;
+  padding:0 18px;
+}
+.grid{
+  display:grid;
+  grid-template-columns: 1.6fr .8fr;
+  gap:18px;
+  align-items:start;
+}
+@media(max-width:980px){ .grid{grid-template-columns:1fr;} }
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+.card h2{margin:0 0 12px 0; font-size:20px;}
+.small{color:var(--muted); font-size:13px;}
+.products{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+}
+@media(max-width:980px){ .products{grid-template-columns: repeat(2, 1fr);} }
+@media(max-width:640px){ .products{grid-template-columns:1fr;} }
+
+.pcard{
+  background:var(--card2);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+.pimg{
+  width:100%;
+  height:180px;
+  object-fit:contain;
+  object-position:center;
+  background:#ffffff;
+  display:block;
+}
+.pbody{padding:14px;}
+.ptitle{font-weight:bold; margin:0 0 6px 0;}
+.pmeta{color:var(--muted); font-size:13px; margin:0 0 10px 0;}
+.pprice{font-weight:bold; margin:0 0 12px 0;}
+.pactions{margin-top:auto; padding:0 14px 14px 14px;}
+.pactions .btn{width:100%;}
+
+.cart-list{
+  display:grid;
+  gap:10px;
+  margin-top:10px;
+}
+.citem{
+  border:1px solid rgba(47,57,77,.8);
+  border-radius:12px;
+  padding:12px;
+  background:rgba(0,0,0,.08);
+}
+.crow{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.qtyrow{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+.qtybtn{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.12);
+  color:var(--text);
+  cursor:pointer;
+}
+.qtyval{
+  min-width:32px;
+  text-align:center;
+  line-height:34px;
+  border:1px solid rgba(47,57,77,.7);
+  border-radius:10px;
+  padding:0 10px;
+  color:var(--text);
+}
+.total{
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid rgba(47,57,77,.7);
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+}
+.sep{height:12px;}
+.notice{
+  margin-top:12px;
+  border:1px solid rgba(245,158,11,.35);
+  background:rgba(245,158,11,.08);
+  border-radius:14px;
+  padding:12px;
+  font-size:13px;
+}
+footer{
+  text-align:center;
+  padding:30px 18px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:14px;
+  margin-top:28px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <strong>MACH3D</strong>
+      <span>Shop (vorgefertigte Teile)</span>
+    </div>
+    <div class="top-actions">
+      <a class="btn" href="index.html">← Zur Website</a>
+      <button class="btn btn-primary" id="goCheckout">Anfrage senden</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="grid">
+
+    <div class="card">
+      <h2>Produkte</h2>
+      <p class="small">Direkt in den Warenkorb legen. Du kannst später per E-Mail/WhatsApp anfragen.</p>
+
+      <div class="products" id="products"></div>
+    </div>
+
+    <div class="card">
+      <h2>Warenkorb</h2>
+      <p class="small" id="cartHint">Noch leer.</p>
+
+      <div class="cart-list" id="cartList"></div>
+
+      <div class="total" id="totalRow" style="display:none;">
+        <div>Total</div>
+        <div id="totalVal">0 CHF</div>
+      </div>
+
+      <div class="sep"></div>
+
+      <button class="btn btn-primary" id="checkoutEmail">E-Mail öffnen</button>
+      <div class="sep"></div>
+      <a class="btn" id="checkoutWA" href="https://wa.me/41792386843" target="_blank" rel="noopener">WhatsApp öffnen</a>
+
+      <div class="notice">
+        <strong>Hinweis:</strong> Preise hier sind Platzhalter/Richtwerte. Du kannst sie jederzeit anpassen.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>© 2026 MACH3D • Dietikon (ZH)</footer>
+
+<script>
+/** ====== Produkte (vorgefertigt) ======
+ *  Du kannst hier beliebig erweitern.
+ *  Wichtig: id muss eindeutig sein.
+ */
+const PRODUCTS = [
+  {
+    id: "stunt-pegs",
+    name: "Stunt Pegs (Set)",
+    desc: "Robuste Pegs für Scooter/Moto (nach Absprache).",
+    priceCHF: 35,
+    img: "images/pegs.png"
+  },
+  {
+    id: "gopro-halter",
+    name: "GoPro Halterung",
+    desc: "Halterung für Lenker/Verkleidung (Varianten möglich).",
+    priceCHF: 25,
+    img: "images/gopro.png"
+  },
+  {
+    id: "kabelhalter",
+    name: "Kabelhalter / Clip",
+    desc: "Kleine Clips, sauber, praktisch.",
+    priceCHF: 12,
+    img: "images/clip.png"
+  }
+];
+
+const CART_KEY = "mach3d_cart_v1";
+
+function loadCart(){
+  try{
+    return JSON.parse(localStorage.getItem(CART_KEY)) || {};
+  }catch{
+    return {};
+  }
+}
+function saveCart(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+function cartCount(cart){
+  return Object.values(cart).reduce((a,b)=>a+b,0);
+}
+function cartTotal(cart){
+  let total = 0;
+  for(const [id, qty] of Object.entries(cart)){
+    const p = PRODUCTS.find(x=>x.id===id);
+    if(p) total += p.priceCHF * qty;
+  }
+  return total;
+}
+
+function renderProducts(){
+  const el = document.getElementById("products");
+  el.innerHTML = "";
+  PRODUCTS.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "pcard";
+    card.innerHTML = `
+      <img class="pimg" src="${p.img}" alt="${p.name}">
+      <div class="pbody">
+        <div class="ptitle">${p.name}</div>
+        <div class="pmeta">${p.desc}</div>
+        <div class="pprice">${p.priceCHF} CHF</div>
+      </div>
+      <div class="pactions">
+        <button class="btn btn-primary" data-add="${p.id}">In den Warenkorb</button>
+      </div>
+    `;
+    el.appendChild(card);
+  });
+
+  el.querySelectorAll("[data-add]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-add");
+      const cart = loadCart();
+      cart[id] = (cart[id] || 0) + 1;
+      saveCart(cart);
+      renderCart();
+    });
+  });
+}
+
+function renderCart(){
+  const cart = loadCart();
+  const list = document.getElementById("cartList");
+  const hint = document.getElementById("cartHint");
+  const totalRow = document.getElementById("totalRow");
+  const totalVal = document.getElementById("totalVal");
+
+  list.innerHTML = "";
+
+  const ids = Object.keys(cart).filter(id => cart[id] > 0);
+  if(ids.length === 0){
+    hint.textContent = "Noch leer.";
+    totalRow.style.display = "none";
+    return;
+  }
+
+  hint.textContent = `${cartCount(cart)} Artikel im Warenkorb`;
+  totalRow.style.display = "flex";
+  totalVal.textContent = `${cartTotal(cart)} CHF`;
+
+  ids.forEach(id => {
+    const p = PRODUCTS.find(x=>x.id===id);
+    if(!p) return;
+
+    const qty = cart[id];
+    const item = document.createElement("div");
+    item.className = "citem";
+    item.innerHTML = `
+      <div class="crow">
+        <div><strong>${p.name}</strong><div class="small">${p.priceCHF} CHF / Stk</div></div>
+        <div><strong>${p.priceCHF * qty} CHF</strong></div>
+      </div>
+      <div class="qtyrow">
+        <button class="qtybtn" data-dec="${id}">−</button>
+        <div class="qtyval">${qty}</div>
+        <button class="qtybtn" data-inc="${id}">+</button>
+        <button class="qtybtn" style="margin-left:auto;" data-del="${id}" title="Entfernen">✕</button>
+      </div>
+    `;
+    list.appendChild(item);
+  });
+
+  list.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => {
+    const id = b.getAttribute("data-inc");
+    const cart = loadCart();
+    cart[id] = (cart[id] || 0) + 1;
+    saveCart(cart);
+    renderCart();
+  }));
+  list.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => {
+    const id = b.getAttribute("data-dec");
+    const cart = loadCart();
+    cart[id] = Math.max(0, (cart[id] || 0) - 1);
+    if(cart[id] === 0) delete cart[id];
+    saveCart(cart);
+    renderCart();
+  }));
+  list.querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => {
+    const id = b.getAttribute("data-del");
+    const cart = loadCart();
+    delete cart[id];
+    saveCart(cart);
+    renderCart();
+  }));
+
+  refreshCheckoutLinks();
+}
+
+function buildCartText(){
+  const cart = loadCart();
+  const ids = Object.keys(cart).filter(id => cart[id] > 0);
+  if(ids.length === 0) return "Warenkorb ist leer.";
+
+  const lines = [];
+  lines.push("Shop-Anfrage – MACH3D");
+  lines.push("---------------------");
+  ids.forEach(id => {
+    const p = PRODUCTS.find(x=>x.id===id);
+    if(!p) return;
+    lines.push(`${cart[id]}× ${p.name} (${p.priceCHF} CHF/Stk) = ${p.priceCHF * cart[id]} CHF`);
+  });
+  lines.push("");
+  lines.push(`Total (Richtwert): ${cartTotal(cart)} CHF`);
+  lines.push("");
+  lines.push("Hinweis: Bitte kurz Einsatz/Zweck + gewünschte Farbe/Variante angeben.");
+  return lines.join("\n");
+}
+
+function refreshCheckoutLinks(){
+  const wa = document.getElementById("checkoutWA");
+  wa.href = "https://wa.me/41792386843?text=" + encodeURIComponent(buildCartText());
+}
+
+document.getElementById("checkoutEmail").addEventListener("click", () => {
+  const subject = encodeURIComponent("MACH3D Shop – Anfrage");
+  const body = encodeURIComponent(buildCartText());
+  window.location.href = "mailto:shop.mach3d@gmail.com?subject=" + subject + "&body=" + body;
+});
+
+document.getElementById("goCheckout").addEventListener("click", () => {
+  // gleiche Aktion wie Email, nur quick
+  const subject = encodeURIComponent("MACH3D Shop – Anfrage");
+  const body = encodeURIComponent(buildCartText());
+  window.location.href = "mailto:shop.mach3d@gmail.com?subject=" + subject + "&body=" + body;
+});
+
+// init
+renderProducts();
+renderCart();
+refreshCheckoutLinks();
+</script>
+
+</body>
+</html>
